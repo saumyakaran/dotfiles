@@ -7,27 +7,27 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 1. **Clone the repo**
 
-```bash
-git clone https://github.com/hubertetcetera/dotfiles.git
-cd dotfiles
-```
+   ```bash
+   git clone https://github.com/hubertetcetera/dotfiles.git
+   cd dotfiles
+   ```
 
-2. **Install GNU Stow**
+1. **Install GNU Stow**
 
-```bash
-# macOS
-brew install stow
-# Debian/Ubuntu
-sudo apt install stow
-# Arch
-sudo pacman -S stow
-```
+   ```bash
+   # macOS
+   brew install stow
+   # Debian/Ubuntu
+   sudo apt install stow
+   # Arch
+   sudo pacman -S stow
+   ```
 
-3. **Deploy configs**
+1. **Deploy configs**
 
-```bash
-stow .
-```
+   ```bash
+   stow .
+   ```
 
 This symlinks everything in the repo into the correct locations (under `~/.config`).
 
