@@ -1,0 +1,78 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "final_space": true,
+  "console_title_template": "{{ .Folder }}",
+
+  "palettes": {
+    "template": "{{ if eq .Shell \"pwsh\" }}macchiato{{ end }}",
+    "list": {
+      "macchiato": {
+        "base":     "#24273a",
+        "text":     "#cad3f5",
+        "subtext0": "#a5adcb",
+        "overlay1": "#8087a2",
+        "surface0": "#363a4f",
+        "mauve":    "#c6a0f6",
+        "green":    "#a6da95",
+        "red":      "#ed8796",
+        "peach":    "#f5a97f",
+        "lavender": "#b7bdf8"
+      }
+    }
+  },
+
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "p:lavender",
+          "foreground_templates": [
+            "{{ if .Root }}p:red{{ end }}"
+          ],
+          "template": " {{ .Folder }} ",
+          "properties": {
+            "style": "folder",
+            "folder_separator_icon": "/"
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "p:green",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:peach{{ end }}",
+            "{{ if and (gt .Behind 0) (gt .Ahead 0) }}p:mauve{{ end }}",
+            "{{ if gt .Behind 0 }}p:red{{ end }}"
+          ],
+          "template": " {{ .HEAD }}{{ if .Working.Changed }} ~{{ end }}{{ if .Staging.Changed }} +{{ end }} ",
+          "properties": {
+            "fetch_status": true
+          }
+        },
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:green",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}p:red{{ end }}"
+          ],
+          "template": "{{ if gt .Code 0 }} ✗{{ end }} ",
+          "properties": {
+            "always_enabled": false
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:overlay1",
+          "template": "❯ "
+        }
+      ]
+    }
+  ]
+}

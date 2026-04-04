@@ -1,0 +1,253 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/amnweb/yasb/main/schema.json
+watch_stylesheet: true
+watch_config: true
+debug: false
+update_check: true # Enable automatic update check.
+
+bars:
+  primary-bar:
+    enabled: true
+    screens: ["primary"]
+    class_name: "yasb-bar"
+    alignment:
+      position: "top"
+      center: false
+    animation:
+      enabled: true
+      duration: 300
+    blur_effect:
+      enabled: false
+      acrylic: false
+      dark_mode: true
+      round_corners: true
+      round_corners_type: "normal"
+      border_color: "System"
+    window_flags:
+      always_on_top: false
+      windows_app_bar: true
+    dimensions:
+      width: "100%"
+      height: 28
+    padding:
+      top: 4
+      left: 4
+      bottom: 0
+      right: 4
+    widgets:
+      left:
+        - "glazewm_tiling_direction"
+        - "glazewm_workspaces"
+        - "active_window"
+      center:
+        - "clock"
+      right:
+        - "volume"
+        - "wifi"
+        - "bluetooth"
+        - "notifications"
+        - "cpu"
+        - "memory"
+        - "disk"
+        - "power_menu"
+
+widgets:
+  glazewm_tiling_direction:
+    type: "glazewm.tiling_direction.GlazewmTilingDirectionWidget"
+    options:
+      horizontal_label: "\udb81\udce1"
+      vertical_label: "\udb81\udce2"
+
+  glazewm_workspaces:
+    type: "glazewm.workspaces.GlazewmWorkspacesWidget"
+    options:
+      offline_label: "GlazeWM Offline"
+      hide_if_offline: true
+      populated_label: "{name}"
+      empty_label: "{name}"
+      active_populated_label: "{name}"
+      active_empty_label: "{name}"
+      hide_empty_workspaces: false
+      glazewm_server_uri: "ws://localhost:6123"
+      enable_scroll_switching: true
+      reverse_scroll_direction: true
+      monitor_exclusive: true
+      animation: true
+      app_icons:
+        enabled_populated: false
+        enabled_active: false
+        size: 16
+        max_icons: 0
+        hide_label: false
+        hide_duplicates: false
+        hide_floating: false
+
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[title]}"
+      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
+      label_no_window: ""
+      label_icon: true
+      label_icon_size: 14
+      max_length: 46
+      max_length_ellipsis: "..."
+      monitor_exclusive: true
+
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "{%a %d %b  %H:%M}"
+      label_alt: "{%A %d %B %Y  %H:%M:%S}"
+      timezones: []
+      calendar:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "System"
+        alignment: "center"
+        direction: "down"
+      callbacks:
+        on_left: "toggle_calendar"
+        on_right: "toggle_label"
+
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "<span>{icon}</span> {level}"
+      label_alt: "{volume}"
+      tooltip: false
+      volume_icons:
+        - "\ueee8"
+        - "\uf026"
+        - "\uf027"
+        - "\uf027"
+        - "\uf028"
+      callbacks:
+        on_left: "toggle_volume_menu"
+        on_middle: "do_nothing"
+        on_right: "toggle_mute"
+      audio_menu:
+        blur: true
+        round_corners: true
+        alignment: "right"
+        direction: "down"
+        distance: 6
+        offset_top: 6
+        offset_left: 0
+        show_apps: true
+        show_app_labels: false
+        show_app_icons: true
+
+  wifi:
+    type: "yasb.wifi.WifiWidget"
+    options:
+      label: "<span>{wifi_icon}</span>"
+      label_alt: "{wifi_name} {wifi_strength}%"
+      update_interval: 5000
+      ethernet_label: "<span>{wifi_icon}</span>"
+      ethernet_label_alt: "<span>{wifi_icon}</span> {ip_addr}"
+      ethernet_icon: "\ueba9"
+      wifi_icons:
+        - "\udb82\udd2e"
+        - "\udb82\udd1f"
+        - "\udb82\udd22"
+        - "\udb82\udd25"
+        - "\udb82\udd28"
+      callbacks:
+        on_left: "toggle_menu"
+        on_middle: "exec cmd.exe /c start ms-settings:network"
+        on_right: "toggle_label"
+      menu_config:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "System"
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+
+  bluetooth:
+    type: "yasb.bluetooth.BluetoothWidget"
+    options:
+      label: "<span>{icon}</span>"
+      label_alt: "<span>{icon}</span>"
+      label_no_device: ""
+      tooltip: true
+      icons:
+        bluetooth_on: "\udb80\udcaf"
+        bluetooth_off: "\udb80\udcb2"
+        bluetooth_connected: "\udb80\udcb1"
+      callbacks:
+        on_left: "exec cmd.exe /c start ms-settings:bluetooth"
+
+  cpu:
+    type: "yasb.cpu.CpuWidget"
+    options:
+      label: "<span>\uf4bc</span> {info[percent][total]}%"
+      label_alt: "<span>\uf4bc</span> {info[freq][current]:.1f}GHz"
+      update_interval: 1000
+      callbacks:
+        on_left: "toggle_label"
+
+  memory:
+    type: "yasb.memory.MemoryWidget"
+    options:
+      label: "<span>\udb80\udf5b</span> {virtual_mem_free}"
+      label_alt: "<span>\udb80\udf5b</span> {virtual_mem_percent}%  {virtual_mem_used}/{virtual_mem_total}"
+      update_interval: 1000
+      memory_thresholds:
+        low: 25
+        medium: 50
+        high: 90
+      callbacks:
+        on_left: "toggle_label"
+
+  disk:
+    type: "yasb.disk.DiskWidget"
+    options:
+      label: "<span>\uf473</span>"
+      label_alt: "<span>\uf473</span>"
+      update_interval: 60
+      group_label:
+        volume_labels: ["C", "D", "E", "F"]
+        show_label_name: false
+        blur: true
+        round_corners: true
+        round_corners_type: "small"
+        border_color: "System"
+        alignment: "right"
+        direction: "down"
+        distance: 6
+      callbacks:
+        on_left: "toggle_group"
+        on_middle: "toggle_label"
+        on_right: "exec explorer C:\\"
+
+  notifications:
+    type: "yasb.notifications.NotificationsWidget"
+    options:
+      label: "<span>\uf476</span> {count}"
+      label_alt: "{count} notifications"
+      hide_empty: true
+      tooltip: false
+      callbacks:
+        on_left: "toggle_notification"
+        on_right: "do_nothing"
+        on_middle: "toggle_label"
+
+  power_menu:
+    type: "yasb.power_menu.PowerMenuWidget"
+    options:
+      label: "\uf011"
+      uptime: true
+      blur: false
+      blur_background: false
+      animation_duration: 200
+      button_row: 5
+      buttons:
+        shutdown: ["\uf011", "Shut Down"]
+        restart: ["\uead2", "Restart"]
+        signout: ["\udb80\udf43", "Sign Out"]
+        hibernate: ["\uf28e", "Hibernate"]
+        cancel: ["\udb81\udf3a", "Cancel"]

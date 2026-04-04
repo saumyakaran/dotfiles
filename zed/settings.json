@@ -1,0 +1,81 @@
+{
+  // ── Appearance ──────────────────────────────────────────────
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Macchiato",
+  },
+  "buffer_font_family": "Geist Mono",
+  "buffer_font_size": 14,
+  "buffer_font_weight": 400,
+  "ui_font_family": "Geist Mono",
+  "ui_font_size": 13,
+
+  // ── Editor ──────────────────────────────────────────────────
+  "tab_size": 2,
+  "soft_wrap": "editor_width",
+  "show_whitespaces": "selection",
+  "cursor_blink": false,
+  "relative_line_numbers": true,
+  "scrollbar": {
+    "show": "never",
+  },
+  "indent_guides": {
+    "enabled": true,
+    "line_width": 1,
+    "coloring": "indent_aware",
+  },
+
+  // ── UI chrome ───────────────────────────────────────────────
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false,
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": false,
+  },
+  "project_panel": {
+    "dock": "left",
+    "default_width": 220,
+    "file_icons": true,
+    "folder_icons": true,
+    "git_status": true,
+    "indent_size": 16,
+  },
+  "status_bar": {
+    "show": true,
+  },
+
+  // ── Vim mode ────────────────────────────────────────────────
+  "vim_mode": true,
+
+  // ── Git ─────────────────────────────────────────────────────
+  "git": {
+    "enabled": true,
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": false,
+    },
+  },
+
+  // ── Telemetry ───────────────────────────────────────────────
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+
+  // ── Format on save ──────────────────────────────────────────
+  "format_on_save": "on",
+  "autosave": "on_focus_change",
+
+  // ── Terminal (integrated) ───────────────────────────────────
+  "terminal": {
+    "font_family": "Geist Mono",
+    "font_size": 13,
+    "shell": {
+      "program": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    },
+    "working_directory": "current_project_directory",
+  },
+}

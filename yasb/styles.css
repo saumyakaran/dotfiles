@@ -1,0 +1,784 @@
+/* Catppuccin Macchiato */
+:root {
+  --rosewater: #f4dbd6;
+  --flamingo: #f0c6c6;
+  --pink: #f5bde6;
+  --mauve: #c6a0f6;
+  --red: #ed8796;
+  --maroon: #ee99a0;
+  --peach: #f5a97f;
+  --yellow: #eed49f;
+  --green: #a6da95;
+  --teal: #8bd5ca;
+  --sky: #91d7e3;
+  --sapphire: #7dc4e4;
+  --blue: #8aadf4;
+  --lavender: #b7bdf8;
+  --text: #cad3f5;
+  --subtext1: #b8c0e0;
+  --subtext0: #a5adcb;
+  --overlay2: #939ab7;
+  --overlay1: #8087a2;
+  --overlay0: #6e738d;
+  --surface2: #5b6078;
+  --surface1: #494d64;
+  --surface0: #363a4f;
+  --base: #24273a;
+  --mantle: #1e2030;
+  --crust: #181926;
+  --pill: rgba(73, 77, 100, 0.45);
+  --popup: rgba(30, 32, 48, 0.95);
+}
+
+* {
+  font-size: 12px;
+  color: #cad3f5;
+  font-weight: 600;
+  font-family: "GeistMono NFP", "GeistMono NF", "Geist Mono", monospace;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Bar: fully transparent ── */
+.yasb-bar {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+/* ── Default widget ── */
+.widget {
+  padding: 0 4px;
+  margin: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.widget .icon {
+  font-size: 14px;
+}
+
+.widget .label {
+  color: var(--subtext1);
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+/* ─────────────────────────────────────────────
+   LEFT GROUP
+   ───────────────────────────────────────────── */
+
+/* Tiling direction - left cap */
+.glazewm-tiling-direction {
+  background-color: var(--pill);
+  padding: 6px;
+  margin: 0;
+  border-radius: 6px 0 0 6px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.glazewm-tiling-direction .btn {
+  font-size: 16px;
+  padding: 0 2px;
+  color: var(--text);
+  border: none;
+}
+
+.glazewm-tiling-direction .btn:hover {
+  color: var(--blue);
+}
+
+/* Workspaces - middle */
+.glazewm-workspaces {
+  background-color: var(--pill);
+  padding: 0 1px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.glazewm-workspaces .offline-status {
+  color: var(--overlay2);
+  font-size: 12px;
+  padding: 0 4px;
+}
+
+.glazewm-workspaces .ws-btn {
+  font-size: 12px;
+  background-color: transparent;
+  border: none;
+  padding: 2px 8px;
+  margin: 0 2px;
+  color: var(--overlay2);
+  min-width: 20px;
+  min-height: 18px;
+}
+
+.glazewm-workspaces .ws-btn.empty {
+  color: var(--overlay0);
+}
+
+.glazewm-workspaces .ws-btn.populated {
+  color: var(--subtext1);
+}
+
+.glazewm-workspaces .ws-btn.active_populated,
+.glazewm-workspaces .ws-btn.active_empty {
+  color: var(--subtext0);
+  background-color: var(--blue);
+  border-radius: 4px;
+}
+
+.glazewm-workspaces .ws-btn.focused_populated,
+.glazewm-workspaces .ws-btn.focused_empty {
+  color: var(--base);
+  background-color: var(--blue);
+  border-radius: 4px;
+}
+
+.glazewm-workspaces .ws-btn:hover,
+.glazewm-workspaces .ws-btn.populated:hover,
+.glazewm-workspaces .ws-btn.empty:hover {
+  color: var(--blue);
+}
+
+.glazewm-workspaces .ws-btn.focused_populated:hover {
+  color: var(--base);
+}
+
+/* Active window - right cap */
+.active-window-widget {
+  background-color: var(--pill);
+  padding: 0 8px;
+  margin: 0;
+  border-radius: 0 6px 6px 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.active-window-widget .label {
+  color: var(--subtext1);
+  font-size: 12px;
+}
+
+.active-window-widget .icon {
+  padding-right: 4px;
+  border: none;
+}
+
+/* ─────────────────────────────────────────────
+   CENTER GROUP: Clock
+   ───────────────────────────────────────────── */
+.clock-widget {
+  background-color: var(--pill);
+  padding: 0 10px;
+  border-radius: 6px;
+}
+
+.clock-widget .label {
+  font-size: 12px;
+  color: var(--text);
+}
+
+/* ── Calendar dropdown ── */
+.calendar {
+  background-color: var(--popup);
+  border-radius: 8px;
+  border: 1px solid var(--surface0);
+}
+
+.calendar .calendar-table,
+.calendar .calendar-table::item {
+  background-color: transparent;
+  color: var(--subtext0);
+  font-family: "Segoe UI";
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.calendar .calendar-table::item:selected {
+  color: var(--crust);
+  background-color: var(--blue);
+  border-radius: 10px;
+}
+
+.calendar .day-label {
+  margin-top: 20px;
+}
+
+.calendar .day-label,
+.calendar .month-label,
+.calendar .date-label,
+.calendar .week-label {
+  font-family: "Segoe UI";
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 700;
+  min-width: 180px;
+  max-width: 180px;
+}
+
+.calendar .week-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--subtext0);
+}
+
+.calendar .month-label {
+  font-weight: normal;
+}
+
+.calendar .date-label {
+  font-size: 88px;
+  font-weight: 900;
+  margin-top: -20px;
+}
+
+/* ─────────────────────────────────────────────
+   RIGHT GROUP
+   ───────────────────────────────────────────── */
+
+/* Volume - left cap */
+.volume-widget {
+  background-color: var(--pill);
+  padding: 0 4px 0 8px;
+  margin: 0;
+  border-radius: 6px 0 0 6px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.volume-widget .icon {
+  font-size: 14px;
+  color: var(--teal);
+}
+
+/* WiFi */
+.wifi-widget {
+  background-color: var(--pill);
+  padding: 0 5px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.wifi-widget .icon {
+  font-size: 14px;
+  color: var(--blue);
+  padding: 0;
+  min-width: 18px;
+}
+
+/* Bluetooth */
+.bluetooth-widget {
+  background-color: var(--pill);
+  padding: 0 5px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.bluetooth-widget .icon {
+  font-size: 14px;
+  color: var(--sapphire);
+  min-width: 16px;
+}
+
+/* Notifications */
+.notification-widget {
+  background-color: var(--pill);
+  padding: 0 4px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.notification-widget .icon {
+  font-size: 13px;
+  color: var(--blue);
+}
+
+.notification-widget .icon.new-notification {
+  color: var(--peach);
+}
+
+/* CPU */
+.cpu-widget {
+  background-color: var(--pill);
+  padding: 0 4px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.cpu-widget .icon {
+  color: var(--yellow);
+  font-size: 13px;
+}
+
+/* Memory */
+.memory-widget {
+  background-color: var(--pill);
+  padding: 0 4px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.memory-widget .icon {
+  color: var(--green);
+  font-size: 13px;
+}
+
+/* Disk */
+.disk-widget {
+  background-color: var(--pill);
+  padding: 0 4px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.disk-widget .icon {
+  color: var(--lavender);
+  font-size: 13px;
+  min-width: 16px;
+}
+
+/* Power menu - right cap */
+.power-menu-widget {
+  background-color: var(--pill);
+  padding: 0 8px 0 4px;
+  margin: 0;
+  border-radius: 0 6px 6px 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.power-menu-widget .label {
+  color: var(--red);
+  font-size: 14px;
+}
+
+/* ── Power menu popup ── */
+.power-menu-popup {
+  background-color: var(--popup);
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--surface0);
+}
+
+.power-menu-popup .button {
+  padding: 0;
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 72px;
+  border-radius: 8px;
+  background-color: var(--surface0);
+  border: 2px solid transparent;
+  margin: 4px;
+}
+
+.power-menu-popup .button.hover {
+  background-color: var(--surface1);
+}
+
+.power-menu-popup .button .label {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Segoe UI";
+  color: var(--subtext0);
+  margin-bottom: 4px;
+}
+
+.power-menu-popup .button .icon {
+  font-size: 22px;
+  padding-top: 8px;
+}
+
+.power-menu-popup .button.hover .label {
+  color: var(--text);
+}
+
+/* Shutdown - red */
+.power-menu-popup .button.shutdown .icon {
+  color: var(--red);
+}
+
+.power-menu-popup .button.shutdown.hover {
+  border: 2px solid var(--red);
+}
+
+/* Restart - peach */
+.power-menu-popup .button.restart .icon {
+  color: var(--peach);
+}
+
+.power-menu-popup .button.restart.hover {
+  border: 2px solid var(--peach);
+}
+
+/* Sign out - mauve */
+.power-menu-popup .button.signout .icon {
+  color: var(--mauve);
+}
+
+.power-menu-popup .button.signout.hover {
+  border: 2px solid var(--mauve);
+}
+
+/* Hibernate - blue */
+.power-menu-popup .button.hibernate .icon {
+  color: var(--blue);
+}
+
+.power-menu-popup .button.hibernate.hover {
+  border: 2px solid var(--blue);
+}
+
+/* Cancel - overlay, subtle */
+.power-menu-popup .button.cancel .icon {
+  color: var(--overlay1);
+}
+
+.power-menu-popup .button.cancel.hover {
+  border: 2px solid var(--overlay1);
+}
+
+.power-menu-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.power-menu-overlay .uptime {
+  font-size: 13px;
+  margin-bottom: 16px;
+  color: var(--overlay2);
+  font-weight: 600;
+  font-family: "Segoe UI";
+}
+
+.power-menu-popup .profile-info {
+  padding: 0 0 12px 0;
+  border-bottom: 1px solid var(--surface0);
+  background-color: transparent;
+  margin-bottom: 12px;
+}
+
+.power-menu-popup .profile-info .profile-username {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  font-family: "Segoe UI";
+}
+
+.power-menu-popup .profile-info .profile-account-type {
+  font-size: 12px;
+  color: var(--subtext0);
+  font-family: "Segoe UI";
+}
+
+.power-menu-popup .profile-info .profile-email {
+  font-size: 11px;
+  color: var(--overlay1);
+  font-family: "Segoe UI";
+}
+
+/* ─────────────────────────────────────────────
+   POPUPS / MENUS
+   ───────────────────────────────────────────── */
+
+/* ── Volume menu ── */
+.audio-menu {
+  background-color: var(--popup);
+  border-radius: 10px;
+  border: 1px solid var(--surface0);
+  padding: 12px;
+}
+
+.audio-menu .volume-slider {
+  margin: 4px 8px;
+}
+
+.audio-menu .volume-slider::groove {
+  background: var(--surface0);
+  height: 4px;
+  border-radius: 2px;
+}
+
+.audio-menu .volume-slider::groove:hover {
+  height: 6px;
+}
+
+.audio-menu .volume-slider::sub-page {
+  background: var(--blue);
+  border-radius: 2px;
+}
+
+.audio-menu .volume-slider::handle {
+  background: var(--text);
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  margin-top: -5px;
+}
+
+.audio-menu .app-icon {
+  padding: 4px 6px;
+  min-width: 20px;
+  min-height: 20px;
+  margin-right: 4px;
+}
+
+.audio-menu .app-slider {
+  margin: 2px 6px;
+}
+
+.audio-menu .app-slider::groove {
+  background: var(--surface0);
+  height: 4px;
+  border-radius: 2px;
+}
+
+.audio-menu .app-slider::sub-page {
+  background: var(--blue);
+  border-radius: 2px;
+}
+
+.audio-menu .app-slider::handle {
+  background: var(--text);
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  margin-top: -4px;
+}
+
+.audio-menu .chevron {
+  font-size: 12px;
+  padding: 4px 8px;
+  color: var(--overlay1);
+}
+
+.audio-container .device {
+  background-color: transparent;
+  border: none;
+  padding: 8px 12px;
+  margin: 2px 0;
+  font-size: 12px;
+  font-family: "Segoe UI";
+  border-radius: 6px;
+}
+
+.audio-container .device.selected {
+  background-color: rgba(198, 160, 246, 0.1);
+}
+
+.audio-container .device:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* ── WiFi menu ── */
+.wifi-menu {
+  background-color: var(--popup);
+  border-radius: 10px;
+  border: 1px solid var(--surface0);
+  min-width: 380px;
+  max-width: 400px;
+  min-height: 300px;
+  max-height: 450px;
+  padding: 4px;
+}
+
+.wifi-menu .header {
+  font-family: "Segoe UI";
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 14px;
+  color: var(--text);
+  border-bottom: 1px solid var(--surface0);
+  background-color: transparent;
+}
+
+.wifi-menu .wifi-list {
+  background-color: var(--popup);
+  padding: 4px;
+}
+
+.wifi-menu .wifi-item {
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin: 2px 0;
+}
+
+.wifi-menu .wifi-item:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.wifi-menu .wifi-item[active="true"] {
+  background-color: var(--surface0);
+}
+
+.wifi-menu .wifi-item .name {
+  font-family: "Segoe UI";
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.wifi-menu .wifi-item .status {
+  font-family: "Segoe UI";
+  font-size: 11px;
+  color: var(--subtext0);
+}
+
+.wifi-menu .wifi-item .strength {
+  font-family: "Segoe UI";
+  font-size: 11px;
+  color: var(--overlay1);
+}
+
+.wifi-menu .wifi-item .icon {
+  font-size: 16px;
+  color: var(--blue);
+  padding: 0 4px;
+}
+
+.wifi-menu .wifi-item .connect {
+  font-family: "Segoe UI";
+  font-size: 11px;
+  padding: 4px 10px;
+  margin: 4px 0;
+  border-radius: 4px;
+  background-color: var(--blue);
+  border: none;
+  color: var(--base);
+}
+
+.wifi-menu .wifi-item .connect:hover {
+  background-color: var(--surface1);
+}
+
+.wifi-menu .footer {
+  border-top: 1px solid var(--surface0);
+  padding: 8px 14px;
+  background-color: transparent;
+}
+
+.wifi-menu .footer .settings-button {
+  font-family: "Segoe UI";
+  font-size: 12px;
+  color: var(--subtext0);
+  background-color: transparent;
+  border: none;
+  padding: 4px 0;
+}
+
+.wifi-menu .footer .settings-button:hover {
+  color: var(--text);
+}
+
+.wifi-menu .footer .refresh-icon {
+  font-size: 16px;
+  color: var(--overlay1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.wifi-menu .footer .refresh-icon:hover {
+  color: var(--text);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.wifi-menu .progress-bar {
+  background-color: var(--surface0);
+  border-radius: 2px;
+  max-height: 2px;
+}
+
+.wifi-menu .progress-bar::chunk {
+  background-color: var(--mauve);
+  border-radius: 2px;
+}
+
+/* ── Disk dropdown ── */
+.disk-group {
+  background-color: var(--popup);
+  border-radius: 10px;
+  border: 1px solid var(--surface0);
+  padding: 8px;
+}
+
+.disk-group-row {
+  min-width: 220px;
+  max-width: 220px;
+  max-height: 40px;
+  margin: 0;
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.disk-group-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.disk-group-label-bar {
+  max-height: 6px;
+  border: 0;
+  background-color: rgba(139, 213, 202, 0.15);
+  border-radius: 3px;
+}
+
+.disk-group-label-bar::chunk {
+  background-color: var(--blue);
+  border-radius: 3px;
+}
+
+.disk-group-label {
+  font-size: 12px;
+  font-family: "Segoe UI";
+}
+
+.disk-group-label-size {
+  font-size: 11px;
+  color: var(--overlay1);
+  font-family: "Segoe UI";
+}
+
+/* ── Tooltip ── */
+.tooltip {
+  background-color: var(--popup);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 5px 10px;
+  font-size: 12px;
+  font-family: "Segoe UI";
+  font-weight: 600;
+  margin-top: 4px;
+  border: 1px solid var(--surface0);
+}
+
+/* ── Context menu ── */
+.context-menu {
+  background-color: var(--popup);
+  border-radius: 8px;
+  border: 1px solid var(--surface0);
+  padding: 4px 0;
+}
+
+.context-menu::item {
+  background-color: transparent;
+  padding: 6px 12px;
+  margin: 2px 6px;
+  border-radius: 6px;
+  min-width: 100px;
+  font-family: "Segoe UI";
+  font-size: 12px;
+  color: var(--text);
+}
+
+.context-menu::item:selected {
+  background-color: var(--surface0);
+}
+
+.context-menu::separator {
+  height: 1px;
+  background-color: var(--surface0);
+  margin: 4px 8px;
+}
