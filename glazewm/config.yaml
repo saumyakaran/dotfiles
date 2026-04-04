@@ -1,158 +1,177 @@
 general:
-  # Focus follows mouse
+  startup_commands: []
+  shutdown_commands: []
+  config_reload_commands: []
   focus_follows_cursor: true
-  # Toggle focus on click
   toggle_workspace_on_refocus: false
-  cursor_jump_on_focus: true
-  show_floating_on_top: true
+  cursor_jump:
+    enabled: true
+    trigger: 'monitor_focus'
+  hide_method: 'cloak'
+  show_all_in_taskbar: false
 
 gaps:
-  inner_gap: 8
-  outer_gap: 8
+  scale_with_dpi: true
+  inner_gap: '8px'
+  outer_gap:
+    top: '8px'
+    right: '8px'
+    bottom: '8px'
+    left: '8px'
 
-focus_borders:
-  active:
-    enabled: true
-    color: "#8aadf4" # Macchiato blue
-  inactive:
-    enabled: true
-    color: "#363a4f" # Macchiato surface0
+window_effects:
+  focused_window:
+    border:
+      enabled: true
+      color: '#8aadf4' # Macchiato blue
+    hide_title_bar:
+      enabled: false
+    corner_style:
+      enabled: false
+      style: 'square'
+    transparency:
+      enabled: false
+      opacity: '95%'
+  other_windows:
+    border:
+      enabled: true
+      color: '#363a4f' # Macchiato surface0
+    hide_title_bar:
+      enabled: false
+    corner_style:
+      enabled: false
+      style: 'square'
+    transparency:
+      enabled: false
+      opacity: '0%'
+
+window_behavior:
+  initial_state: 'tiling'
+  state_defaults:
+    floating:
+      centered: true
+      shown_on_top: true
+    fullscreen:
+      maximized: false
+      shown_on_top: false
 
 bar:
   enabled: false # Using YASB
 
 workspaces:
-  - name: "1"
-    display_name: "GAME"
+  - name: '1'
+    display_name: 'GAME'
     keep_alive: true
-  - name: "2"
-    display_name: "WEB"
+  - name: '2'
+    display_name: 'WEB'
     keep_alive: true
-  - name: "3"
-    display_name: "MUSIC"
+  - name: '3'
+    display_name: 'MUSIC'
     keep_alive: true
-  - name: "4"
-    display_name: "CODE"
+  - name: '4'
+    display_name: 'CODE'
     keep_alive: true
 
 window_rules:
   # Float rules for apps that shouldn't tile
-  - command: "set floating"
-    match_process_name: "Taskmgr"
-  - command: "set floating"
-    match_process_name: "CalculatorApp"
-  - command: "set floating"
-    match_process_name: "Notepad"
-  - command: "set floating"
-    match_process_name: "mspaint"
-  - command: "set floating"
-    match_process_name: "WinPaletter"
-  - command: "set floating"
-    match_process_name: "explorer" # Files App uses a different process
-  - command: "set floating"
-    match_process_name: "SystemSettings"
-  - command: "set floating"
-    match_process_name: "ms-settings"
-  - command: "set floating"
-    match_process_name: "Nahimic"
-  - command: "set floating"
-    match_process_name: "ASUS"
-  - command: "set floating"
-    match_process_name: "GHelper"
-  - command: "set floating"
-    match_process_name: "nvidia-settings"
-  - command: "set floating"
-    match_process_name: "steam"
-  - command: "set floating"
-    match_process_name: "steamwebhelper"
-  - command: "set floating"
-    match_process_name: "GameOverlayUI"
-  - command: "set floating"
-    match_process_name: "EpicGamesLauncher"
-  - command: "set floating"
-    match_title: "Picture-in-Picture"
-  - command: "set floating"
-    match_title: "Task Manager"
+  - commands: ['set-floating --centered']
+    match:
+      - window_process: { equals: 'Taskmgr' }
+      - window_process: { equals: 'CalculatorApp' }
+      - window_process: { equals: 'Notepad' }
+      - window_process: { equals: 'mspaint' }
+      - window_process: { equals: 'WinPaletter' }
+      - window_process: { equals: 'explorer' }
+      - window_process: { equals: 'SystemSettings' }
+      - window_process: { equals: 'ms-settings' }
+      - window_process: { equals: 'Nahimic' }
+      - window_process: { regex: 'ASUS' }
+      - window_process: { equals: 'GHelper' }
+      - window_process: { equals: 'nvidia-settings' }
+      - window_process: { equals: 'steam' }
+      - window_process: { equals: 'steamwebhelper' }
+      - window_process: { equals: 'GameOverlayUI' }
+      - window_process: { equals: 'EpicGamesLauncher' }
+      - window_title: { regex: '[Pp]icture.in.[Pp]icture' }
+      - window_title: { equals: 'Task Manager' }
 
   # Ignore rules - don't manage these at all
-  - command: "ignore"
-    match_process_name: "SearchHost"
-  - command: "ignore"
-    match_process_name: "ShellExperienceHost"
-  - command: "ignore"
-    match_process_name: "StartMenuExperienceHost"
-  - command: "ignore"
-    match_process_name: "LockApp"
-  - command: "ignore"
-    match_process_name: "Widgets"
+  - commands: ['ignore']
+    match:
+      - window_process: { equals: 'SearchHost' }
+      - window_process: { equals: 'ShellExperienceHost' }
+      - window_process: { equals: 'StartMenuExperienceHost' }
+      - window_process: { equals: 'LockApp' }
+      - window_process: { equals: 'Widgets' }
+      - window_process: { equals: 'zebar' }
 
 keybindings:
   # ── Focus ──────────────────────────────────────────────────
-  - command: "focus left"
-    binding: "Alt+H"
-  - command: "focus down"
-    binding: "Alt+J"
-  - command: "focus up"
-    binding: "Alt+K"
-  - command: "focus right"
-    binding: "Alt+L"
+  - commands: ['focus --direction left']
+    bindings: ['alt+h']
+  - commands: ['focus --direction down']
+    bindings: ['alt+j']
+  - commands: ['focus --direction up']
+    bindings: ['alt+k']
+  - commands: ['focus --direction right']
+    bindings: ['alt+l']
 
   # ── Move window direction ───────────────────────────────────
-  - command: "move left"
-    binding: "Alt+Shift+H"
-  - command: "move down"
-    binding: "Alt+Shift+J"
-  - command: "move up"
-    binding: "Alt+Shift+K"
-  - command: "move right"
-    binding: "Alt+Shift+L"
+  - commands: ['move --direction left']
+    bindings: ['alt+shift+h']
+  - commands: ['move --direction down']
+    bindings: ['alt+shift+j']
+  - commands: ['move --direction up']
+    bindings: ['alt+shift+k']
+  - commands: ['move --direction right']
+    bindings: ['alt+shift+l']
 
   # ── Resize ─────────────────────────────────────────────────
-  - command: "resize width -50"
-    binding: "Alt+Ctrl+H"
-  - command: "resize height +50"
-    binding: "Alt+Ctrl+J"
-  - command: "resize height -50"
-    binding: "Alt+Ctrl+K"
-  - command: "resize width +50"
-    binding: "Alt+Ctrl+L"
+  - commands: ['resize --width -2%']
+    bindings: ['alt+ctrl+h']
+  - commands: ['resize --height +2%']
+    bindings: ['alt+ctrl+j']
+  - commands: ['resize --height -2%']
+    bindings: ['alt+ctrl+k']
+  - commands: ['resize --width +2%']
+    bindings: ['alt+ctrl+l']
 
   # ── Workspaces ─────────────────────────────────────────────
-  - command: "focus workspace 1"
-    binding: "Alt+1"
-  - command: "focus workspace 2"
-    binding: "Alt+2"
-  - command: "focus workspace 3"
-    binding: "Alt+3"
-  - command: "focus workspace 4"
-    binding: "Alt+4"
+  - commands: ['focus --workspace 1']
+    bindings: ['alt+1']
+  - commands: ['focus --workspace 2']
+    bindings: ['alt+2']
+  - commands: ['focus --workspace 3']
+    bindings: ['alt+3']
+  - commands: ['focus --workspace 4']
+    bindings: ['alt+4']
 
   # ── Move window to workspace ────────────────────────────────
-  - command: "move to workspace 1"
-    binding: "Alt+Shift+1"
-  - command: "move to workspace 2"
-    binding: "Alt+Shift+2"
-  - command: "move to workspace 3"
-    binding: "Alt+Shift+3"
-  - command: "move to workspace 4"
-    binding: "Alt+Shift+4"
+  - commands: ['move --workspace 1', 'focus --workspace 1']
+    bindings: ['alt+shift+1']
+  - commands: ['move --workspace 2', 'focus --workspace 2']
+    bindings: ['alt+shift+2']
+  - commands: ['move --workspace 3', 'focus --workspace 3']
+    bindings: ['alt+shift+3']
+  - commands: ['move --workspace 4', 'focus --workspace 4']
+    bindings: ['alt+shift+4']
 
   # ── Layout ─────────────────────────────────────────────────
-  - command: "toggle floating"
-    binding: "Alt+Shift+F"
-  - command: "toggle fullscreen"
-    binding: "Alt+F"
-  - command: "toggle maximized"
-    binding: "Alt+M"
+  - commands: ['toggle-floating --centered']
+    bindings: ['alt+shift+f']
+  - commands: ['toggle-fullscreen']
+    bindings: ['alt+f']
+  - commands: ['toggle-minimized']
+    bindings: ['alt+m']
 
   # ── Close window ───────────────────────────────────────────
-  - command: "close"
-    binding: "Alt+Shift+Q"
+  - commands: ['close']
+    bindings: ['alt+shift+q']
 
   # ── Reload config ──────────────────────────────────────────
-  - command: "reload config"
-    binding: "Alt+Shift+R"
+  - commands: ['wm-reload-config']
+    bindings: ['alt+shift+r']
 
   # ── Exit GlazeWM ───────────────────────────────────────────
-  - command: "exit wm"
-    binding: "Alt+Shift+E"
+  - commands: ['wm-exit']
+    bindings: ['alt+shift+e']
