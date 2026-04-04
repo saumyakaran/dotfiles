@@ -565,7 +565,7 @@
 }
 
 .audio-container .device.selected {
-  background-color: rgba(198, 160, 246, 0.1);
+  background-color: rgba(138, 173, 244, 0.1);
 }
 
 .audio-container .device:hover {
@@ -691,7 +691,7 @@
 }
 
 .wifi-menu .progress-bar::chunk {
-  background-color: var(--mauve);
+  background-color: var(--blue);
   border-radius: 2px;
 }
 

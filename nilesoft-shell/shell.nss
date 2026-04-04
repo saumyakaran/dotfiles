@@ -7,7 +7,7 @@
       "back": "#24273a",
       "border": "#363a4f",
       "text": "#cad3f5",
-      "text.highlight": "#c6a0f6",
+      "text.highlight": "#8aadf4",
       "back.highlight": "#363a4f",
       "separator": "#494d64",
       "radius": 6,

@@ -13,7 +13,7 @@ gaps:
 focus_borders:
   active:
     enabled: true
-    color: "#c6a0f6" # Macchiato mauve
+    color: "#8aadf4" # Macchiato blue
   inactive:
     enabled: true
     color: "#363a4f" # Macchiato surface0
