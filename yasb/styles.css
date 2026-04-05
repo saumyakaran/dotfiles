@@ -301,6 +301,27 @@
   color: var(--peach);
 }
 
+/* Battery */
+.battery-widget {
+  background-color: var(--pill);
+  padding: 0 4px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.battery-widget .icon {
+  color: var(--green);
+  font-size: 13px;
+}
+
+.battery-widget .icon.charging {
+  color: var(--yellow);
+}
+
+.battery-widget .icon.low {
+  color: var(--red);
+}
+
 /* CPU */
 .cpu-widget {
   background-color: var(--pill);
