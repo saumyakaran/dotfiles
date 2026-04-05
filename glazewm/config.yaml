@@ -2,7 +2,7 @@ general:
   startup_commands: []
   shutdown_commands: []
   config_reload_commands: []
-  focus_follows_cursor: true
+  focus_follows_cursor: false
   toggle_workspace_on_refocus: false
   cursor_jump:
     enabled: true
@@ -104,6 +104,7 @@ window_rules:
       - window_process: { equals: 'LockApp' }
       - window_process: { equals: 'Widgets' }
       - window_process: { equals: 'zebar' }
+      - window_process: { regex: '[Ww]allpaper' }
 
 keybindings:
   # ── Focus ──────────────────────────────────────────────────
