@@ -1,0 +1,118 @@
+{
+  "controlStyles[0].target": "Grid#NotificationCenterGrid",
+  "controlStyles[0].styles[0]": "Background:=<AcrylicBrush TintColor=\"#1e2030\" TintOpacity=\"0.85\" FallbackColor=\"#1e2030\"/>",
+  "controlStyles[0].styles[1]": "CornerRadius=12",
+  "controlStyles[0].styles[2]": "BorderThickness=1",
+  "controlStyles[0].styles[3]": "BorderBrush=#363a4f",
+
+  "controlStyles[1].target": "Grid#CalendarCenterGrid",
+  "controlStyles[1].styles[0]": "Background:=<AcrylicBrush TintColor=\"#1e2030\" TintOpacity=\"0.85\" FallbackColor=\"#1e2030\"/>",
+  "controlStyles[1].styles[1]": "CornerRadius=12",
+  "controlStyles[1].styles[2]": "BorderThickness=1",
+  "controlStyles[1].styles[3]": "BorderBrush=#363a4f",
+
+  "controlStyles[2].target": "Grid#ControlCenterRegion",
+  "controlStyles[2].styles[0]": "Background:=<AcrylicBrush TintColor=\"#1e2030\" TintOpacity=\"0.85\" FallbackColor=\"#1e2030\"/>",
+  "controlStyles[2].styles[1]": "CornerRadius=12",
+  "controlStyles[2].styles[2]": "BorderThickness=1",
+  "controlStyles[2].styles[3]": "BorderBrush=#363a4f",
+
+  "controlStyles[3].target": "ScrollViewer#CalendarControlScrollViewer",
+  "controlStyles[3].styles[0]": "Background=Transparent",
+
+  "controlStyles[4].target": "Border#CalendarHeaderMinimizedOverlay",
+  "controlStyles[4].styles[0]": "Background=Transparent",
+
+  "controlStyles[5].target": "ActionCenter.FocusSessionControl#FocusSessionControl > Grid#FocusGrid",
+  "controlStyles[5].styles[0]": "Background=Transparent",
+
+  "controlStyles[6].target": "ActionCenter.FlexibleToastView#FlexibleNormalToastView",
+  "controlStyles[6].styles[0]": "Background:=<SolidColorBrush Color=\"Transparent\"/>",
+
+  "controlStyles[7].target": "Border#ToastBackgroundBorder2",
+  "controlStyles[7].styles[0]": "Background:=<SolidColorBrush Color=\"#363a4f\" Opacity=\"0.7\"/>",
+  "controlStyles[7].styles[1]": "BorderThickness=0",
+  "controlStyles[7].styles[2]": "CornerRadius=8",
+
+  "controlStyles[8].target": "ActionCenter.FlexibleItemView",
+  "controlStyles[8].styles[0]": "CornerRadius=8",
+
+  "controlStyles[9].target": "Windows.UI.Xaml.Controls.Grid#L1Grid > Border",
+  "controlStyles[9].styles[0]": "Background=Transparent",
+
+  "controlStyles[10].target": "ScrollViewer#ListContent",
+  "controlStyles[10].styles[0]": "Background=Transparent",
+
+  "controlStyles[11].target": "ContentPresenter#PageContent",
+  "controlStyles[11].styles[0]": "Background=Transparent",
+
+  "controlStyles[12].target": "ContentPresenter#PageContent > Grid > Border",
+  "controlStyles[12].styles[0]": "Background=Transparent",
+
+  "controlStyles[13].target": "Windows.UI.Xaml.Controls.Grid#MediaTransportControlsRegion",
+  "controlStyles[13].styles[0]": "Background:=<SolidColorBrush Color=\"#363a4f\" Opacity=\"0.7\"/>",
+  "controlStyles[13].styles[1]": "CornerRadius=8",
+  "controlStyles[13].styles[2]": "BorderThickness=0",
+
+  "controlStyles[14].target": "Grid#MediaTransportControlsRoot",
+  "controlStyles[14].styles[0]": "Background=Transparent",
+
+  "controlStyles[15].target": "Button#ClearAll",
+  "controlStyles[15].styles[0]": "Background=#363a4f",
+  "controlStyles[15].styles[1]": "Foreground=#cad3f5",
+  "controlStyles[15].styles[2]": "CornerRadius=6",
+
+  "controlStyles[16].target": "CalendarViewDayItem",
+  "controlStyles[16].styles[0]": "Foreground=#b8c0e0",
+
+  "controlStyles[17].target": "Grid#FooterGrid",
+  "controlStyles[17].styles[0]": "Background=Transparent",
+
+  "controlStyles[18].target": "Microsoft.UI.Xaml.Controls.PipsPager#QuickActionsPager",
+  "controlStyles[18].styles[0]": "Foreground=#6e738d",
+
+  "controlStyles[19].target": "MenuFlyoutPresenter > Border",
+  "controlStyles[19].styles[0]": "Background:=<AcrylicBrush TintColor=\"#1e2030\" TintOpacity=\"0.9\" FallbackColor=\"#1e2030\"/>",
+  "controlStyles[19].styles[1]": "BorderThickness=1",
+  "controlStyles[19].styles[2]": "BorderBrush=#363a4f",
+  "controlStyles[19].styles[3]": "CornerRadius=8",
+
+  "controlStyles[20].target": "Border#JumpListRestyledAcrylic",
+  "controlStyles[20].styles[0]": "Background:=<AcrylicBrush TintColor=\"#1e2030\" TintOpacity=\"0.9\" FallbackColor=\"#1e2030\"/>",
+  "controlStyles[20].styles[1]": "BorderThickness=1",
+  "controlStyles[20].styles[2]": "BorderBrush=#363a4f",
+  "controlStyles[20].styles[3]": "CornerRadius=8",
+
+  "controlStyles[21].target": "QuickActions.AccessibleToggleButton#ToggleButton",
+  "controlStyles[21].styles[0]": "Background=#363a4f",
+  "controlStyles[21].styles[1]": "Background@Checked=#8aadf4",
+  "controlStyles[21].styles[2]": "Foreground=#cad3f5",
+  "controlStyles[21].styles[3]": "Foreground@Checked=#24273a",
+  "controlStyles[21].styles[4]": "CornerRadius=8",
+  "controlStyles[21].styles[5]": "BorderThickness=0",
+  "controlStyles[21].styles[6]": "Background@PointerOver=#494d64",
+  "controlStyles[21].styles[7]": "Background@CheckedPointerOver=#7c9de8",
+
+  "controlStyles[22].target": "QuickActions.AccessibleToggleButton#SplitL2Button",
+  "controlStyles[22].styles[0]": "Background=#363a4f",
+  "controlStyles[22].styles[1]": "Background@Checked=#8aadf4",
+  "controlStyles[22].styles[2]": "Foreground=#cad3f5",
+  "controlStyles[22].styles[3]": "Foreground@Checked=#24273a",
+  "controlStyles[22].styles[4]": "CornerRadius=8",
+  "controlStyles[22].styles[5]": "BorderThickness=0",
+  "controlStyles[22].styles[6]": "Background@PointerOver=#494d64",
+  "controlStyles[22].styles[7]": "Background@CheckedPointerOver=#7c9de8",
+
+  "controlStyles[23].target": "Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect",
+  "controlStyles[23].styles[0]": "Fill=#494d64",
+  "controlStyles[23].styles[1]": "RadiusX=4",
+  "controlStyles[23].styles[2]": "RadiusY=4",
+
+  "controlStyles[24].target": "Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect",
+  "controlStyles[24].styles[0]": "Fill=#8aadf4",
+  "controlStyles[24].styles[1]": "RadiusX=4",
+  "controlStyles[24].styles[2]": "RadiusY=4",
+
+  "controlStyles[25].target": "Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb",
+  "controlStyles[25].styles[0]": "Background=#cad3f5"
+}
