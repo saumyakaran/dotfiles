@@ -69,14 +69,10 @@
   "controlStyles[12].styles[1]": "Foreground=#cad3f5",
 
   "controlStyles[13].target": "TextBlock#TimeInnerTextBlock",
-  "controlStyles[13].styles[0]": "Foreground=#cad3f5",
-  "controlStyles[13].styles[1]": "FontFamily=GeistMono NFP",
-  "controlStyles[13].styles[2]": "FontSize=11",
+  "controlStyles[13].styles[0]": "Visibility=Collapsed",
 
   "controlStyles[14].target": "TextBlock#DateInnerTextBlock",
-  "controlStyles[14].styles[0]": "Foreground=#a5adcb",
-  "controlStyles[14].styles[1]": "FontFamily=GeistMono NFP",
-  "controlStyles[14].styles[2]": "FontSize=10",
+  "controlStyles[14].styles[0]": "Visibility=Collapsed",
 
   "controlStyles[15].target": "SystemTray.TextIconContent > Grid > SystemTray.AdaptiveTextBlock#Base > TextBlock",
   "controlStyles[15].styles[0]": "Foreground=#cad3f5",

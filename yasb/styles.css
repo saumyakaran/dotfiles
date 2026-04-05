@@ -314,12 +314,28 @@
   font-size: 13px;
 }
 
-.battery-widget .icon.charging {
+.battery-widget .icon.status-critical {
+  color: var(--red);
+}
+
+.battery-widget .icon.status-low {
+  color: var(--peach);
+}
+
+.battery-widget .icon.status-medium {
   color: var(--yellow);
 }
 
-.battery-widget .icon.low {
-  color: var(--red);
+.battery-widget .icon.status-high {
+  color: var(--green);
+}
+
+.battery-widget .icon.status-full {
+  color: var(--blue);
+}
+
+.battery-widget .icon.charging {
+  color: var(--yellow);
 }
 
 /* CPU */

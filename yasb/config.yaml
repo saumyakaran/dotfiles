@@ -257,8 +257,8 @@ widgets:
       status_thresholds:
         critical: 10
         low: 25
-        medium: 75
-        high: 95
+        medium: 50
+        high: 80
         full: 100
       callbacks:
         on_left: "toggle_label"
