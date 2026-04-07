@@ -5,6 +5,10 @@ oh-my-posh init pwsh --config "$env:DOTFILES\oh-my-posh\saumya.omp.json" | Invok
 Set-Alias -Name vim -Value nvim -ErrorAction SilentlyContinue
 Set-Alias -Name vi  -Value nvim -ErrorAction SilentlyContinue
 
+# ── Java (Eclipse Adoptium) ────────────────────────────────────
+$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-25.0.2.10-hotspot"
+$env:Path = "$env:JAVA_HOME\bin;$env:Path"
+
 # ── Quality of life ────────────────────────────────────────────
 $env:EDITOR = "zed"
 
