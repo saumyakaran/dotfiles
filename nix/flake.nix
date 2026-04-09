@@ -202,6 +202,7 @@
         brews = [
           "dockutil"
           "sketchybar"
+          "borders"
         ];
 
         casks = [
