@@ -1,15 +1,13 @@
 #!/usr/bin/env sh
 
-sketchybar --add item     calendar right               \
-           --set calendar icon=cal                     \
-                          icon.color=$BLACK            \
-                          icon.font="$FONT:Black:12.0" \
-                          icon.padding_left=5          \
-                          icon.padding_right=5         \
-                          icon.drawing=off             \
-                          label.color=$BLACK           \
-                          label.padding_left=5         \
-                          label.padding_right=5        \
-                          background.color=0xffb8c0e0  \
-                          background.height=26         \
-                          background.corner_radius=11
+sketchybar --add item calendar right \
+           --set calendar \
+                 icon=􀉉 \
+                 icon.font="$FONT:Bold:14.0" \
+                 icon.color=$BLUE \
+                 icon.padding_right=6 \
+                 label.color=$WHITE \
+                 label.font="$FONT:Semibold:12.0" \
+                 label.padding_right=4 \
+                 update_freq=30 \
+                 script="$PLUGIN_DIR/clock.sh"

@@ -105,10 +105,10 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 20
 inner.vertical = 20
-outer.left = 20
-outer.bottom = 20
+outer.left = 10
+outer.bottom = 10
 outer.top = 10
-outer.right = 80
+outer.right = 10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -199,17 +199,17 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
-alt-a = 'exec-and-forget open -a /Applications/Vivaldi.app'
+alt-a = 'exec-and-forget open -a /Applications/Brave Browser.app'
 alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
 
 
 # New application shortcuts
-alt-v = 'exec-and-forget open -a /Applications/Vivaldi.app'
+alt-v = 'exec-and-forget open -a /Applications/Brave Browser.app'
 alt-t = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-s = 'exec-and-forget open -a /Applications/Stremio.app'
-alt-c = 'exec-and-forget open -a /Applications/Cursor.app'
-alt-g = 'exec-and-forget open -a /Applications/ChatGPT.app'
-alt-y = 'exec-and-forget open -a /Applications/Vivaldi.app --args --new-window https://youtube.com'
+alt-c = 'exec-and-forget open -a /Applications/Visual Studio Code.app'
+alt-g = 'exec-and-forget open -a /Applications/Claude.app'
+alt-y = 'exec-and-forget open -a /Applications/Brave Browser.app --args --new-window https://youtube.com'
 
 
 # 'service' binding mode declaration.

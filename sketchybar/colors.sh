@@ -1,26 +1,33 @@
 #!/usr/bin/env sh
 
-# Color Palette
-BLACK=0xff181926
-WHITE=0xffcad3f5
+# Catppuccin Macchiato Color Palette
+BLACK=0xff181926    # Crust
+WHITE=0xffcad3f5    # Text
 RED=0xffed8796
 GREEN=0xffa6da95
 BLUE=0xff8aadf4
 YELLOW=0xffeed49f
 ORANGE=0xfff5a97f
 MAGENTA=0xffc6a0f6
-GREY=0xff939ab7
+GREY=0xff939ab7     # Overlay2
 TRANSPARENT=0x00000000
 
-# General bar colors
-BAR_COLOR=0xff1e1e2e # Catppuccin Mocha Base
-ICON_COLOR=$WHITE # Color of all icons
-LABEL_COLOR=$WHITE # Color of all labels
+# Macchiato specific
+BASE=0xff24273a
+MANTLE=0xff1e2030
+SURFACE0=0xff363a4f
+SURFACE1=0xff494d64
+SURFACE2=0xff5b6078
+SUBTEXT0=0xffa5adcb
+SUBTEXT1=0xffb8c0e0
 
-POPUP_BACKGROUND_COLOR=$BLACK
-POPUP_BORDER_COLOR=$WHITE
+# General bar colors
+BAR_COLOR=0xcc24273a          # Macchiato Base (~80% opacity)
+ICON_COLOR=$WHITE
+LABEL_COLOR=$WHITE
+ACCENT_COLOR=$BLUE
+
+POPUP_BACKGROUND_COLOR=$MANTLE
+POPUP_BORDER_COLOR=$SURFACE1
 
 SHADOW_COLOR=$BLACK
-
-# Item specific special colors
-SPOTIFY_GREEN=$GREEN

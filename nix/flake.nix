@@ -117,7 +117,7 @@
 
     linuxOnlyPackages = pkgs:
       with pkgs; [
-        vivaldi # macOS uses Homebrew cask
+        brave # macOS uses Homebrew cask
         ghostty # macOS uses Homebrew cask
         xclip # Clipboard tool (macOS has pbcopy built-in)
       ];
@@ -216,7 +216,7 @@
           "betterdisplay"
 
           # Browsers & Communication
-          "vivaldi"
+          "brave-browser"
           "superhuman"
           "beeper"
 
@@ -255,10 +255,10 @@
         dock = {
           autohide = true;
           show-recents = false;
-          tilesize = 64;
+          tilesize = 48;
           persistent-apps = [
             {app = "/System/Applications/Apps.app";}
-            {app = "/Applications/Vivaldi.app";}
+            {app = "/Applications/Brave Browser.app";}
             {app = "/System/Applications/System Settings.app";}
             {app = "/Applications/Ghostty.app";}
           ];

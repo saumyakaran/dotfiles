@@ -1,35 +1,41 @@
 #!/usr/bin/env sh
 
 sketchybar --add event aerospace_workspace_change
-RED=0xffed8796
-for sid in $(aerospace list-workspaces --all); do
+
+WORKSPACES=($(aerospace list-workspaces --all))
+LAST_IDX=$(( ${#WORKSPACES[@]} - 1 ))
+
+for i in "${!WORKSPACES[@]}"; do
+    sid="${WORKSPACES[$i]}"
+
+    EXTRA_LEFT=0
+    EXTRA_RIGHT=0
+    if [ "$i" -eq 0 ]; then
+        EXTRA_LEFT=4
+    fi
+    if [ "$i" -eq "$LAST_IDX" ]; then
+        EXTRA_RIGHT=4
+    fi
+
     sketchybar --add item "space.$sid" left \
         --subscribe "space.$sid" aerospace_workspace_change \
         --set "space.$sid" \
-        icon="$sid"\
-                              icon.padding_left=22                          \
-                              icon.padding_right=22                         \
-                              label.padding_right=33                        \
-                              icon.highlight_color=$RED                     \
-                              background.color=0x44ffffff \
-                              background.corner_radius=5 \
-                              background.height=30 \
-                              background.drawing=off                         \
-                              label.font="sketchybar-app-font:Regular:16.0" \
-                              label.background.height=30                    \
-                              label.background.drawing=on                   \
-                              label.background.color=0xff494d64             \
-                              label.background.corner_radius=9              \
-                              label.drawing=off                             \
+        label="$sid" \
+        label.font="$FONT:Bold:13.0" \
+        label.color=$SUBTEXT0 \
+        label.highlight_color=$BLUE \
+        label.width=30 \
+        label.align=center \
+        label.y_offset=1 \
+        label.padding_left=2 \
+        label.padding_right=2 \
+        icon.drawing=off \
+        background.color=$SURFACE0 \
+        background.corner_radius=8 \
+        background.height=26 \
+        background.drawing=off \
+        background.padding_left=$EXTRA_LEFT \
+        background.padding_right=$EXTRA_RIGHT \
         click_script="aerospace workspace $sid" \
-        script="$CONFIG_DIR/plugins/aerospacer.sh $sid"
+        script="$PLUGIN_DIR/aerospacer.sh $sid"
 done
-
-sketchybar   --add item       separator left                          \
-             --set separator  icon=                                  \
-                              icon.font="JetBrainsMonoNL Nerd Font Mono:Regular:16.0" \
-                              background.padding_left=15              \
-                              background.padding_right=15             \
-                              label.drawing=off                       \
-                              associated_display=active               \
-                              icon.color=$WHITE

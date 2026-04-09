@@ -185,11 +185,6 @@ if [ -r "/etc/profile.d/fzf.zsh" ]; then
   source "/etc/profile.d/fzf.zsh"
 fi
 
-### ── zoxide ──────────────────────────────────────────────────────────────────
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init --cmd cd zsh)"
-fi
-
 ### ── Aliases ───────────────────────────────────────────────────────────────────
 # lsd (modern ls replacement with icons)
 if command -v lsd >/dev/null 2>&1; then
@@ -228,4 +223,9 @@ fi
 # YouTube TUI - much better than custom scripts!
 if command -v youtube-tui >/dev/null 2>&1; then
   alias yt='youtube-tui'
+fi
+
+### ── zoxide (must be last) ──────────────────────────────────────────────────
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init --cmd cd zsh)"
 fi

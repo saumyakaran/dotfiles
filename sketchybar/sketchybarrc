@@ -1,33 +1,27 @@
 #!/usr/bin/env sh
 
-source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
-source "$HOME/.config/sketchybar/icons.sh" # Loads all defined icons
+source "$HOME/.config/sketchybar/colors.sh"
+source "$HOME/.config/sketchybar/icons.sh"
 
-ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are configured
-PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
+ITEM_DIR="$HOME/.config/sketchybar/items"
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
-FONT="SF Pro" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
-SPACE_CLICK_SCRIPT="yabai -m space --focus \$SID 2>/dev/null" # The script that is run for clicking on space components
+FONT="SF Pro"
+PADDINGS=3
 
-PADDINGS=3 # All paddings use this value (icon, label, background)
-
-POPUP_BORDER_WIDTH=2
-POPUP_CORNER_RADIUS=11
-
-SHADOW=on
-
-# Setting up the general bar appearance and default values
-sketchybar --bar     height=50                                         \
-                     color=$BAR_COLOR                                  \
-                     shadow=$SHADOW                                    \
-                     position=right                                     \
+# Transparent bar — islands provide their own backgrounds
+sketchybar --bar     height=45                                         \
+                     color=$TRANSPARENT                                \
+                     shadow=off                                        \
+                     position=top                                      \
                      sticky=on                                         \
-                     padding_right=18                                  \
-                     padding_left=18                                   \
-                     corner_radius=9                                   \
-                     y_offset=10                                       \
-                     margin=10                                         \
-                     blur_radius=20                                    \
+                     padding_right=6                                   \
+                     padding_left=6                                    \
+                     corner_radius=0                                   \
+                     y_offset=0                                        \
+                     margin=0                                          \
+                     blur_radius=0                                     \
+                     border_width=0                                    \
                                                                        \
            --default updates=when_shown                                \
                      icon.font="$FONT:Bold:14.0"                       \
@@ -44,19 +38,44 @@ sketchybar --bar     height=50                                         \
                      popup.background.corner_radius=11                 \
                      popup.background.border_color=$POPUP_BORDER_COLOR \
                      popup.background.color=$POPUP_BACKGROUND_COLOR    \
-                     popup.background.shadow.drawing=$SHADOW
+                     popup.background.shadow.drawing=off
 
-# Left
-source "$ITEM_DIR/apple.sh"
+# Left island - Workspaces
 source "$ITEM_DIR/spaces.sh"
 
-# Center
-# source "$ITEM_DIR/spotify.sh"
-
-# Right
+# Right island - Date, Stats & Battery
 source "$ITEM_DIR/calendar.sh"
+source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/cpu.sh"
+source "$ITEM_DIR/memory.sh"
+source "$ITEM_DIR/disk.sh"
+
+# ── Island brackets ──────────────────────────────────────────────────
+# Left island: workspaces
+sketchybar --add bracket left_island '/space\..*/' \
+           --set left_island \
+                 background.color=$BAR_COLOR \
+                 background.corner_radius=10 \
+                 background.height=34 \
+                 background.border_color=$SURFACE1 \
+                 background.border_width=1 \
+                 background.blur_radius=30 \
+                 background.padding_left=8 \
+                 background.padding_right=8
+
+# Right island: datetime + stats + battery
+sketchybar --add bracket right_island calendar cpu memory disk battery \
+           --set right_island \
+                 background.color=$BAR_COLOR \
+                 background.corner_radius=10 \
+                 background.height=34 \
+                 background.border_color=$SURFACE1 \
+                 background.border_width=1 \
+                 background.blur_radius=30 \
+                 background.padding_left=8 \
+                 background.padding_right=8
 
 ############## FINALIZING THE SETUP ##############
 sketchybar --update
 
-echo "sketchybar configuation loaded.."
+echo "sketchybar configuration loaded.."
