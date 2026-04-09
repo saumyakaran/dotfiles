@@ -1,10 +1,11 @@
 theme = dark:Catppuccin Macchiato,light:Catppuccin Latte
 font-size = 12
-background-blur-radius = 20
+background-blur-radius = 0
 mouse-hide-while-typing = true
 window-decoration = true
 macos-option-as-alt = true
-#background-opacity = 0.7
-background-blur-radius = 20
+background-opacity = 0.85
+background-blur-radius = 0
 command = /bin/zsh -lc 'if command -v tmux >/dev/null 2>&1; then tmux attach || tmux new-session; else exec ${SHELL:-/bin/zsh}; fi'
+confirm-close-surface = false
 custom-shader = ~/.config/ghostty/shaders/cursor_smear_fade.glsl

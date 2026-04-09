@@ -146,6 +146,7 @@
           ".config/ghostty/config".source = ../ghostty/config;
           ".config/ghostty/themes".source = ../ghostty/themes;
           ".config/aerospace/aerospace.toml".source = ../aerospace/aerospace.toml;
+          ".config/aerospace/scripts".source = ../aerospace/scripts;
           ".config/lazygit".source = ../lazygit;
           ".hammerspoon".source = ../hammerspoon;
           ".config/sketchybar".source = ../sketchybar;
@@ -270,6 +271,7 @@
       };
 
       security.pam.services.sudo_local.touchIdAuth = true;
+      security.pam.services.sudo_local.reattach = true;
     };
   in {
     # ══════════════════════════════════════════════════════════════════════════

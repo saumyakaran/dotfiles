@@ -145,6 +145,7 @@ outer.right = 10
 # end tell'
 # '''
 
+alt-q = 'exec-and-forget ~/.config/aerospace/scripts/close-or-quit.sh'
 alt-ctrl-shift-f = 'fullscreen'
 alt-ctrl-f = 'layout floating tiling'
 
@@ -209,7 +210,7 @@ alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
 
 
 # New application shortcuts
-alt-enter = 'exec-and-forget open -na /Applications/Ghostty.app'
+alt-enter = "exec-and-forget osascript -e 'tell application \"Ghostty\"' -e 'activate' -e 'tell application \"System Events\" to keystroke \"n\" using command down' -e 'end tell'"
 alt-t = 'exec-and-forget open -a /System/Applications/Utilities/Terminal.app'
 alt-s = 'exec-and-forget open -a /Applications/Stremio.app'
 alt-c = "exec-and-forget open -a '/Applications/Visual Studio Code.app'"
