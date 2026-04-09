@@ -1,11 +1,16 @@
 #!/bin/bash
 
 FOCUSED_APP=$(aerospace list-windows --focused --format '%{app-name}')
-WINDOW_COUNT=$(aerospace list-windows --all --format '%{app-name}' | grep -cx "$FOCUSED_APP")
+FOCUSED_PID=$(aerospace list-windows --focused --format '%{app-pid}')
+
+# Count all windows for this app across all workspaces
+WINDOW_COUNT=$(aerospace list-windows --all --format '%{app-pid}' | grep -cx "$FOCUSED_PID")
 
 if [ "$WINDOW_COUNT" -le 1 ]; then
     osascript -e "tell application \"$FOCUSED_APP\" to quit"
 else
-    # Just close the focused window via cmd-w
-    osascript -e 'tell application "System Events" to keystroke "w" using command down'
+    # Use AppleScript to close just the front window
+    osascript -e "tell application \"$FOCUSED_APP\"" \
+              -e 'close front window' \
+              -e 'end tell'
 fi
