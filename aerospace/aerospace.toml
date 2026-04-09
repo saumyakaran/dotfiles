@@ -13,7 +13,7 @@ exec-on-workspace-change = [
 start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = true
+enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
@@ -209,7 +209,8 @@ alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
 
 
 # New application shortcuts
-alt-enter = 'exec-and-forget open -na /Applications/Ghostty.app'
+alt-enter = "exec-and-forget open -na /Applications/Ghostty.app --args --new-window"
+alt-t = 'exec-and-forget open -a /System/Applications/Utilities/Terminal.app'
 alt-s = 'exec-and-forget open -a /Applications/Stremio.app'
 alt-c = "exec-and-forget open -a '/Applications/Visual Studio Code.app'"
 alt-a = 'exec-and-forget open -a /Applications/Claude.app'
