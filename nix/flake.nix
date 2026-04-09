@@ -238,7 +238,8 @@
           "stremio"
           "fathom"
 
-          # Other
+          # Productivity Tools
+          "wispr-flow"
           "todoist-app"
         ];
 
