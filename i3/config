@@ -168,6 +168,7 @@ exec --no-startup-id echo 'Xft.dpi: 144' | xrdb -merge
 for_window [instance="floating-popup"] floating enable, resize set 900 600, move position center
 
 # Autostart
+exec --no-startup-id dunst
 exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/Cloudy_Quasar_1-Catppuccin_Macchiato.png
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec_always --no-startup-id ~/.config/polybar/launch.sh

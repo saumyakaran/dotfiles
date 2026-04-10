@@ -1,16 +1,15 @@
 [global]
 font = GeistMono Nerd Font 10
 origin = top-right
-offset = 12x48
+offset = (12, 48)
 width = 300
-height = 100
+height = (0, 100)
 padding = 12
 horizontal_padding = 16
 frame_width = 2
 frame_color = "#363a4f"
 separator_color = frame
 corner_radius = 8
-icon_theme = "Papirus-Dark"
 enable_recursive_icon_lookup = true
 
 [urgency_low]
