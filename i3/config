@@ -132,7 +132,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # App shortcuts
-bindsym $mod+Shift+b exec brave-browser --password-store=basic
+bindsym $mod+Shift+b exec brave-browser --password-store=basic --new-window
 bindsym $mod+Shift+w exec flatpak run com.stremio.Stremio
 bindsym $mod+Shift+y exec brave-browser --password-store=basic --new-window https://youtube.com
 bindsym $mod+Shift+a exec brave-browser --password-store=basic --new-window https://claude.ai
@@ -165,7 +165,7 @@ exec --no-startup-id xrandr --dpi 144
 exec --no-startup-id echo 'Xft.dpi: 144' | xrdb -merge
 
 # Floating popups
-for_window [instance="floating-popup"] floating enable, resize set 900 600, move position center
+for_window [instance="floating-popup"] floating enable, resize set 1400 900, move position center
 
 # Autostart
 exec --no-startup-id dunst
