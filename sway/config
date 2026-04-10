@@ -172,11 +172,15 @@ bindsym $mod+F1 exec asusctl profile set Quiet && notify-send "Profile" "Quiet"
 bindsym $mod+F2 exec asusctl profile set Balanced && notify-send "Profile" "Balanced"
 bindsym $mod+F3 exec asusctl profile set Performance && notify-send "Profile" "Performance"
 
-# Media keys
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# Brightness
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%- && ~/dotfiles/sway/notify-brightness.sh
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+ && ~/dotfiles/sway/notify-brightness.sh
+
+# Volume
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && ~/dotfiles/sway/notify-vol.sh
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && ~/dotfiles/sway/notify-vol.sh
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && ~/dotfiles/sway/notify-vol.sh
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send -t 1000 -h string:x-canonical-private-synchronous:mic "Mic" "$(pactl get-source-mute @DEFAULT_SOURCE@)"
 
 # Floating popups
 for_window [app_id="floating-popup"] floating enable, resize set 1400 900, move position center
