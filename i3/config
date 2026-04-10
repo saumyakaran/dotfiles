@@ -57,7 +57,7 @@ bindsym $mod+space exec $menu
 floating_modifier $mod
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
+bindsym $mod+Shift+e exec ~/dotfiles/rofi/powermenu.sh
 
 # Navigation
 bindsym $mod+h focus left

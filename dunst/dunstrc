@@ -1,15 +1,16 @@
 [global]
 font = GeistMono Nerd Font 10
 origin = top-right
-offset = (12, 48)
+offset = (8, 40)
 width = 300
-height = (0, 100)
-padding = 12
-horizontal_padding = 16
+height = (0, 80)
+scale = 0
+padding = 8
+horizontal_padding = 12
 frame_width = 2
 frame_color = "#363a4f"
 separator_color = frame
-corner_radius = 8
+corner_radius = 6
 enable_recursive_icon_lookup = true
 
 [urgency_low]

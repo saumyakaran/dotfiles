@@ -1,0 +1,55 @@
+@theme "/dev/null"
+
+* {
+    bg:       #24273a;
+    bg-alt:   #363a4f;
+    fg:       #cad3f5;
+    fg-alt:   #6e738d;
+    blue:     #8aadf4;
+    red:      #ed8796;
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    width: 300px;
+    background-color: @bg;
+    border: 2px;
+    border-color: @blue;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+mainbox {
+    background-color: @bg;
+}
+
+inputbar {
+    enabled: false;
+}
+
+listview {
+    columns: 1;
+    lines: 4;
+    background-color: @bg;
+    padding: 0;
+    spacing: 4px;
+}
+
+element {
+    padding: 10px 12px;
+    background-color: @bg;
+    text-color: @fg;
+    border-radius: 4px;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+    font: "GeistMono Nerd Font 11";
+}
+
+element selected {
+    background-color: @bg-alt;
+    text-color: @blue;
+}

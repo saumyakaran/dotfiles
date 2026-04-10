@@ -18,9 +18,8 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 ### ── SSH agent ───────────────────────────────────────────────────────────────
 unset SSH_ASKPASS
-if [ -z "$SSH_AUTH_SOCK" ]; then
+if [ -n "$DISPLAY" ] && [ -z "$SSH_AUTH_SOCK" ]; then
   eval $(ssh-agent)
-  ssh-add 2>/dev/null
 fi
 
 ### ── Zsh plugins ─────────────────────────────────────────────────────────────
