@@ -1,0 +1,78 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "margin-top": 4,
+    "margin-left": 10,
+    "margin-right": 10,
+    "margin-bottom": 0,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": ["network", "bluetooth", "cpu", "memory", "disk", "battery"],
+
+    "sway/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "focused": "󰮯",
+            "default": "󰊠",
+            "urgent": "󰊠"
+        }
+    },
+
+    "sway/mode": {
+        "format": "{}"
+    },
+
+    "clock": {
+        "format": "{:%a %b %d  %H:%M}",
+        "interval": 1
+    },
+
+    "network": {
+        "format-wifi": "󰖩 {essid}",
+        "format-disconnected": "󰖩 off",
+        "on-click": "~/dotfiles/rofi/wifi.sh",
+        "interval": 3
+    },
+
+    "bluetooth": {
+        "format-on": "󰂱",
+        "format-off": "󰂳",
+        "format-connected": "󰂱 {device_alias}",
+        "on-click": "~/dotfiles/rofi/bluetooth.sh"
+    },
+
+    "cpu": {
+        "format": "󰘚 {usage}%",
+        "interval": 3,
+        "on-click": "kitty --class floating-popup -e btop"
+    },
+
+    "memory": {
+        "format": "󰍛 {used:0.1f}G/{total:0.1f}G",
+        "interval": 3,
+        "on-click": "kitty --class floating-popup -e btop"
+    },
+
+    "disk": {
+        "format": "󰆼 {used}/{total}",
+        "path": "/",
+        "interval": 30,
+        "on-click": "kitty --class floating-popup -e btop"
+    },
+
+    "battery": {
+        "bat": "BAT1",
+        "states": {
+            "full": 100,
+            "good": 80,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "{icon} {capacity}% 󱐋",
+        "format-full": "{icon} 100%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂"],
+        "interval": 5
+    }
+}

@@ -1,0 +1,66 @@
+@define-color base #24273a;
+@define-color mantle #1e2030;
+@define-color text #cad3f5;
+@define-color subtext0 #a5adcb;
+@define-color overlay0 #6e738d;
+@define-color surface0 #363a4f;
+@define-color surface1 #494d64;
+@define-color blue #8aadf4;
+@define-color red #ed8796;
+@define-color green #a6da95;
+@define-color yellow #eed49f;
+@define-color peach #f5a97f;
+
+* {
+    font-family: "GeistMono Nerd Font";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: alpha(@mantle, 0.8);
+    color: @text;
+    border: 2px solid @surface0;
+    border-radius: 6px;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    color: @overlay0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+#workspaces button.focused {
+    color: @blue;
+}
+
+#workspaces button.urgent {
+    color: @red;
+}
+
+#mode {
+    color: @base;
+    background: @peach;
+    padding: 0 8px;
+    border-radius: 4px;
+}
+
+#clock,
+#network,
+#bluetooth,
+#cpu,
+#memory,
+#disk,
+#battery {
+    padding: 0 10px;
+}
+
+#battery.charging {
+    color: @green;
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+}

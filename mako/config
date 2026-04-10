@@ -1,0 +1,9 @@
+font=GeistMono Nerd Font 10
+background-color=#1e2030
+text-color=#cad3f5
+border-color=#8aadf4
+border-size=2
+border-radius=6
+padding=12
+margin=10
+default-timeout=5000

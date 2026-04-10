@@ -25,7 +25,7 @@ window {
     border: 2px;
     border-color: @blue;
     border-radius: 8px;
-    padding: 20px;
+    padding: 6px;
 }
 
 mainbox {
@@ -55,7 +55,7 @@ listview {
 }
 
 element {
-    padding: 10px 12px;
+    padding: 10px 6px;
     background-color: @bg;
     text-color: @fg;
     border-radius: 4px;
@@ -65,6 +65,7 @@ element-text {
     background-color: inherit;
     text-color: inherit;
     margin: 0 0 0 12px;
+    vertical-align: 0.5;
 }
 
 element-icon {
