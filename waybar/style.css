@@ -18,10 +18,17 @@
 }
 
 window#waybar {
-    background: alpha(@mantle, 0.8);
+    background: transparent;
     color: @text;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background: alpha(@mantle, 0.8);
     border: 2px solid @surface0;
     border-radius: 6px;
+    padding: 0 4px;
 }
 
 #workspaces button {
