@@ -36,7 +36,7 @@ return {
     opts = function()
       return {
         flavour = catppuccin_flavour_sync(),
-        transparent_background = false,
+        transparent_background = true,
       }
     end,
     config = function(_, opts)
