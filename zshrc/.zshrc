@@ -35,9 +35,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 ### ── SSH agent ───────────────────────────────────────────────────────────────
 unset SSH_ASKPASS
-if [ -n "$DISPLAY" ] && [ -z "$SSH_AUTH_SOCK" ]; then
-  eval $(ssh-agent)
-fi
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 ### ── Zsh plugins ─────────────────────────────────────────────────────────────
 [ -r /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
