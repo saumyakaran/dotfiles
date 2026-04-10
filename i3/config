@@ -1,15 +1,59 @@
 # Variables
 set $mod Mod4
 set $term kitty
-set $menu dmenu_run
+set $menu rofi -show drun -show-icons -dpi 144
 
-# Font for window titles and bar
-font pango:monospace 10
+# Catppuccin Macchiato colors
+set $rosewater #f4dbd6
+set $flamingo  #f0c6c6
+set $pink      #f5bde6
+set $mauve     #c6a0f6
+set $red       #ed8796
+set $maroon    #ee99a0
+set $peach     #f5a97f
+set $yellow    #eed49f
+set $green     #a6da95
+set $teal      #8bd5ca
+set $sky       #91d7e3
+set $sapphire  #7dc4e4
+set $blue      #8aadf4
+set $lavender  #b7bdf8
+set $text      #cad3f5
+set $subtext1  #b8c0e0
+set $subtext0  #a5adcb
+set $overlay2  #939ab7
+set $overlay1  #8087a2
+set $overlay0  #6e738d
+set $surface2  #5b6078
+set $surface1  #494d64
+set $surface0  #363a4f
+set $base      #24273a
+set $mantle    #1e2030
+set $crust     #181926
+
+# Font
+font pango:GeistMono Nerd Font 10
+
+# Window appearance
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders smart
+
+# Gaps
+gaps inner 8
+gaps outer 4
+gaps top 36
+
+# Window colors          border    bg        text      indicator child_border
+client.focused           $blue     $base     $text     $blue     $blue
+client.focused_inactive  $surface1 $base     $subtext1 $surface1 $surface1
+client.unfocused         $surface0 $base     $overlay0 $surface0 $surface0
+client.urgent            $red      $base     $text     $red      $red
 
 # Key bindings
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec $menu
+bindsym $mod+space exec $menu
 floating_modifier $mod
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -65,7 +109,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
+bindsym $mod+d focus mode_toggle
 bindsym $mod+a focus parent
 
 # Scratchpad
@@ -87,26 +131,39 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# App shortcuts
+bindsym $mod+Shift+b exec brave-browser
+bindsym $mod+Shift+w exec flatpak run com.stremio.Stremio
+bindsym $mod+Shift+y exec brave-browser --new-window https://youtube.com
+bindsym $mod+Shift+a exec brave-browser --new-window https://claude.ai
+
+# Screenshots
+bindsym Print exec --no-startup-id maim ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png
+bindsym $mod+Shift+s exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+
+# Keyboard brightness
+bindsym F2 exec asusctl leds prev
+bindsym F3 exec asusctl leds next
+
+# Power profiles
+bindsym $mod+F1 exec asusctl profile set Quiet && notify-send "Profile" "Quiet"
+bindsym $mod+F2 exec asusctl profile set Balanced && notify-send "Profile" "Balanced"
+bindsym $mod+F3 exec asusctl profile set Performance && notify-send "Profile" "Performance"
+
 # Media keys
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-# Bar
-bar {
-    status_command i3status
-    position top
-    colors {
-        background #1e1e2e
-        statusline #cdd6f4
-        focused_workspace #313244 #313244 #cdd6f4
-        inactive_workspace #1e1e2e #1e1e2e #6c7086
-    }
-}
+# HiDPI
+exec --no-startup-id xrandr --dpi 144
+exec --no-startup-id echo 'Xft.dpi: 144' | xrdb -merge
 
-# Wallpaper
+# Floating popups
+for_window [instance="floating-popup"] floating enable, resize set 900 600, move position center
+
+# Autostart
 exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/Cloudy_Quasar_1-Catppuccin_Macchiato.png
-
-# Autostart terminal
-exec --no-startup-id $term
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+exec_always --no-startup-id ~/.config/polybar/launch.sh
