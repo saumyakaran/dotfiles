@@ -160,15 +160,13 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-# HiDPI
-exec --no-startup-id xrandr --dpi 144
-exec --no-startup-id echo 'Xft.dpi: 144' | xrdb -merge
+# HiDPI (must run before other apps)
+exec --no-startup-id bash -c 'xrandr --dpi 144; echo "Xft.dpi: 144" | xrdb -merge; sleep 0.5; dunst'
 
 # Floating popups
 for_window [instance="floating-popup"] floating enable, resize set 1400 900, move position center
 
 # Autostart
-exec --no-startup-id dunst
 exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/Cloudy_Quasar_1-Catppuccin_Macchiato.png
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec_always --no-startup-id ~/.config/polybar/launch.sh
