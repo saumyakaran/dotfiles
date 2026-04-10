@@ -145,7 +145,7 @@ outer.right = 10
 # end tell'
 # '''
 
-alt-q = 'exec-and-forget ~/.config/aerospace/scripts/close-or-quit.sh'
+alt-shift-q = 'exec-and-forget ~/.config/aerospace/scripts/close-or-quit.sh'
 alt-ctrl-shift-f = 'fullscreen'
 alt-ctrl-f = 'layout floating tiling'
 
@@ -205,17 +205,12 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
-alt-b = 'exec-and-forget ~/.config/aerospace/scripts/open-brave.sh'
-alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
-
-
-# New application shortcuts
+# App shortcuts (alt-shift to match Linux super-shift convention)
+alt-shift-b = 'exec-and-forget ~/.config/aerospace/scripts/open-brave.sh'
+alt-shift-w = 'exec-and-forget open -a /Applications/Stremio.app'
+alt-shift-a = 'exec-and-forget open -a /Applications/Claude.app'
+alt-shift-y = "exec-and-forget open -a '/Applications/Brave Browser.app' --args --new-window https://youtube.com"
 alt-enter = 'exec-and-forget open -na /Applications/Ghostty.app'
-alt-t = 'exec-and-forget open -a /System/Applications/Utilities/Terminal.app'
-alt-s = 'exec-and-forget open -a /Applications/Stremio.app'
-alt-c = "exec-and-forget open -a '/Applications/Visual Studio Code.app'"
-alt-a = 'exec-and-forget open -a /Applications/Claude.app'
-alt-y = "exec-and-forget open -a '/Applications/Brave Browser.app' --args --new-window https://youtube.com"
 
 
 # 'service' binding mode declaration.
