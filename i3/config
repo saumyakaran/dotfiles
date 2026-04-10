@@ -137,6 +137,10 @@ bindsym $mod+Shift+w exec flatpak run com.stremio.Stremio
 bindsym $mod+Shift+y exec brave-browser --password-store=basic --new-window https://youtube.com
 bindsym $mod+Shift+a exec brave-browser --password-store=basic --new-window https://claude.ai
 
+# Screen lock
+bindsym $mod+Escape exec "ssh-add -D; i3lock -c 1e2030"
+exec --no-startup-id xautolock -time 5 -locker 'ssh-add -D; i3lock -c 1e2030' -notify 30 -notifier 'notify-send "Locking in 30 seconds"'
+
 # Screenshots
 bindsym Print exec --no-startup-id maim ~/Pictures/Screenshots/$(date +%Y%m%d_%H%M%S).png
 bindsym $mod+Shift+s exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
