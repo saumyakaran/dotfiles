@@ -1,0 +1,11 @@
+
+module howdy_login 1.0;
+
+require {
+	type abrt_var_run_t;
+	type local_login_t;
+	class sock_file write;
+}
+
+#============= local_login_t ==============
+allow local_login_t abrt_var_run_t:sock_file write;
