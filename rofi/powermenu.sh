@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+source ~/dotfiles/theme/vars.sh
 
-chosen=$(echo -e '<span color="#8aadf4">󰒲</span>  Sleep\n<span color="#a6da95">󰍃</span>  Logout\n<span color="#f5a97f">󰜉</span>  Reboot\n<span color="#ed8796">󰐥</span>  Shutdown' | rofi -dmenu -p "" -markup-rows -theme ~/dotfiles/rofi/powermenu.rasi)
+chosen=$(echo -e "<span color=\"#${BASE0D}\">󰒲</span>  Sleep\n<span color=\"#${BASE0B}\">󰍃</span>  Logout\n<span color=\"#${BASE09}\">󰜉</span>  Reboot\n<span color=\"#${BASE08}\">󰐥</span>  Shutdown" | rofi -dmenu -p "" -markup-rows -theme ~/dotfiles/rofi/powermenu.rasi)
 
 case "$chosen" in
     *Sleep*) ssh-add -D; swaylock && systemctl suspend ;;
