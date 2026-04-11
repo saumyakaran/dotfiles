@@ -163,13 +163,16 @@ gap = int(r * 1.2)
 ng = len(ghost_colors)
 total_w = r * 2 + ng * r * 2 + (ng) * gap
 cx_start = (w - total_w) // 2 + r
-cy = h // 2 - skirt_h // 2  # shift up to account for skirt
+# Ghost visual height = 2*r + skirt_h, center the whole scene using that
+scene_h = 2 * r + skirt_h
+cy = (h - scene_h) // 2 + r  # cy is the center of the dome circle
 
 def draw_pacman(cx, cy, r, color, bg):
-    draw.pieslice((cx - r, cy - r, cx + r, cy + r), start=35, end=325, fill=color)
-    # Dot in mouth
+    # Pac-man is 2*r tall, ghosts are 2*r+skirt — offset pac-man down to align midpoints
+    pac_cy = cy + skirt_h // 2
+    draw.pieslice((cx - r, pac_cy - r, cx + r, pac_cy + r), start=35, end=325, fill=color)
     dot_r = r // 6
-    draw.ellipse((cx + r + dot_r * 2, cy - dot_r, cx + r + dot_r * 4, cy + dot_r), fill=color)
+    draw.ellipse((cx + r + dot_r * 2, pac_cy - dot_r, cx + r + dot_r * 4, pac_cy + dot_r), fill=color)
 
 def draw_ghost(cx, cy, r, color, bg):
     draw.pieslice((cx - r, cy - r, cx + r, cy + r), start=180, end=360, fill=color)

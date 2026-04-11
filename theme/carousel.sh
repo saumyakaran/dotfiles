@@ -37,9 +37,9 @@ build_cache() {
         [[ "$variant" == "light" ]] && icon="󰖨"
         local swatches=""
         for c in "${colors[@]}"; do
-            swatches+="<span foreground='#${c}'>${block}${block}</span>"
+            swatches+="<span foreground='#${c}' font_desc='monospace'>${block}${block}</span>"
         done
-        echo "${slug} ${icon} ${swatches}  ${name}"
+        echo "${slug} ${icon} <tt>${swatches}</tt>  ${name}"
     done | sort -t' ' -k3 > "$cache_file"
     cat "$cache_file"
 }
