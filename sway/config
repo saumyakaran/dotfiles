@@ -11,8 +11,8 @@ font pango:GeistMono Nerd Font 10
 # HiDPI
 output * scale 1.5
 
-# Wallpaper
-output * bg ~/Pictures/Wallpapers/Cloudy_Quasar_1-Catppuccin_Macchiato.png fill
+# Wallpaper (managed by theme/apply-theme.sh)
+include ~/dotfiles/theme/sway-wallpaper
 
 # Window appearance
 default_border pixel 2

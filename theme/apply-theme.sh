@@ -130,9 +130,8 @@ apply_wallpaper() {
         fi
     fi
 
-    if pgrep -x sway &>/dev/null; then
-        swaymsg "output * bg $wallpaper fill" 2>/dev/null || true
-    fi
+    # Write sway include file so wallpaper persists across reloads
+    echo "output * bg $wallpaper fill" > "$DOTFILES/theme/sway-wallpaper"
 }
 
 generate_palette_wallpaper() {
