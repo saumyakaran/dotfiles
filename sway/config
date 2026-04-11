@@ -170,9 +170,10 @@ for_window [app_id="floating-popup"] floating enable, resize set 1400 900, move 
 for_window [class="Spotify"] move scratchpad
 bindsym $mod+p exec sh -c 'swaymsg "[class=Spotify] scratchpad show" || spotify'
 
-# Mullvad: $mod+v to toggle show/hide
+# Mullvad: $mod+v to toggle VPN, $mod+Shift+v to show GUI
 for_window [class="Mullvad VPN"] move scratchpad
-bindsym $mod+v exec sh -c 'swaymsg "[class=Mullvad VPN] scratchpad show" || /opt/Mullvad\ VPN/mullvad-vpn'
+bindsym $mod+v exec sh -c 'if mullvad status | grep -q "Connected"; then mullvad disconnect && notify-send -t 2000 "󰖂 Mullvad" "Disconnected"; else mullvad connect && notify-send -t 2000 "󰖂 Mullvad" "Connecting..."; fi'
+bindsym $mod+Shift+v exec sh -c 'swaymsg "[class=Mullvad VPN] scratchpad show" || /opt/Mullvad\ VPN/mullvad-vpn'
 
 # Theme switcher
 bindsym $mod+t exec ~/dotfiles/theme/carousel.sh
