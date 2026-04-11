@@ -91,7 +91,7 @@ bindsym $mod+Shift+0 move container to workspace number 10
 
 # Layout
 bindsym $mod+b splith
-bindsym $mod+v splitv
+bindsym $mod+slash splitv
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -169,6 +169,10 @@ for_window [app_id="floating-popup"] floating enable, resize set 1400 900, move 
 # Spotify: $mod+p to toggle show/hide (scratchpad minimize)
 for_window [class="Spotify"] move scratchpad
 bindsym $mod+p exec sh -c 'swaymsg "[class=Spotify] scratchpad show" || spotify'
+
+# Mullvad: $mod+v to toggle show/hide
+for_window [class="Mullvad VPN"] move scratchpad
+bindsym $mod+v exec sh -c 'swaymsg "[class=Mullvad VPN] scratchpad show" || /opt/Mullvad\ VPN/mullvad-vpn'
 
 # Theme switcher
 bindsym $mod+t exec ~/dotfiles/theme/carousel.sh
