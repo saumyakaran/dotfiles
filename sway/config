@@ -159,10 +159,11 @@ bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy -t image/png
 bindsym F2 exec asusctl leds prev
 bindsym F3 exec asusctl leds next
 
-# Power profiles
-bindsym $mod+F1 exec asusctl profile set Quiet && notify-send "Profile" "Quiet"
-bindsym $mod+F2 exec asusctl profile set Balanced && notify-send "Profile" "Balanced"
-bindsym $mod+F3 exec asusctl profile set Performance && notify-send "Profile" "Performance"
+# Aura RGB: cycle between theme color / ambient / off
+bindsym F4 exec ~/dotfiles/sway/aura-cycle.sh
+
+# Power profile cycle (Quiet → Balanced → Performance)
+bindsym F5 exec ~/dotfiles/sway/power-profile.sh
 
 # Brightness
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- && ~/dotfiles/sway/notify-brightness.sh

@@ -296,11 +296,18 @@ apply_spicetify() {
     spicetify apply 2>/dev/null || true
 }
 
+# Keyboard RGB - set to theme accent color
+apply_keyboard_rgb() {
+    command -v asusctl &>/dev/null || return 0
+    asusctl aura effect static -c "${colors[base0D]}" 2>/dev/null || true
+}
+
 reload_apps
 update_gtk
 apply_wallpaper
 notify_brave
 apply_spicetify
+apply_keyboard_rgb
 
 # Patch Stylus import with current colors
 if [[ -f "$DOTFILES/theme/stylus-import.json" || -f "$HOME/Downloads/import.json" ]]; then
