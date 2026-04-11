@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
 DOTFILES="$HOME/dotfiles"
 APPLY="$DOTFILES/theme/apply-theme.sh"
 CURRENT_FILE="$DOTFILES/theme/current"
