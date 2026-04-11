@@ -1,15 +1,4 @@
-@define-color base #24273a;
-@define-color mantle #1e2030;
-@define-color text #cad3f5;
-@define-color subtext0 #a5adcb;
-@define-color overlay0 #6e738d;
-@define-color surface0 #363a4f;
-@define-color surface1 #494d64;
-@define-color blue #8aadf4;
-@define-color red #ed8796;
-@define-color green #a6da95;
-@define-color yellow #eed49f;
-@define-color peach #f5a97f;
+@import "colors.css";
 
 * {
     font-family: "GeistMono Nerd Font";
@@ -19,37 +8,37 @@
 
 window#waybar {
     background: transparent;
-    color: @text;
+    color: @base05;
 }
 
 .modules-left,
 .modules-center,
 .modules-right {
-    background: alpha(@mantle, 0.8);
-    border: 2px solid @surface0;
+    background: alpha(@base01, 0.8);
+    border: 2px solid @base02;
     border-radius: 0;
     padding: 0 4px;
 }
 
 #workspaces button {
     padding: 0 6px;
-    color: @overlay0;
+    color: @base03;
     border: none;
     border-radius: 0;
     background: transparent;
 }
 
 #workspaces button.focused {
-    color: @blue;
+    color: @base0D;
 }
 
 #workspaces button.urgent {
-    color: @red;
+    color: @base08;
 }
 
 #mode {
-    color: @base;
-    background: @peach;
+    color: @base00;
+    background: @base09;
     padding: 0 8px;
     border-radius: 4px;
 }
@@ -65,9 +54,9 @@ window#waybar {
 }
 
 #battery.charging {
-    color: @green;
+    color: @base0B;
 }
 
 #battery.critical:not(.charging) {
-    color: @red;
+    color: @base08;
 }
