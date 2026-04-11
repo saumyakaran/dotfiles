@@ -5,7 +5,7 @@ chosen=$(echo -e "<span color=\"#${BASE0D}\">󰒲</span>  Sleep\n<span color=\"#
 
 case "$chosen" in
     *Sleep*) ssh-add -D; swaylock && systemctl suspend ;;
-    *Logout*) swaymsg exit ;;
+    *Logout*) pkill -f 1password; pkill -f mullvad-gui; pkill -f stremio; pkill -f spotify; swaymsg exit ;;
     *Reboot*) systemctl reboot ;;
     *Shutdown*) systemctl poweroff ;;
 esac

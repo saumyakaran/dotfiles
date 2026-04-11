@@ -165,6 +165,10 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && n
 # Floating popups
 for_window [app_id="floating-popup"] floating enable, resize set 1400 900, move position center
 
+# Spotify: $mod+p to toggle show/hide (scratchpad minimize)
+for_window [class="Spotify"] move scratchpad
+bindsym $mod+p exec sh -c 'swaymsg "[class=Spotify] scratchpad show" || spotify'
+
 # Theme switcher
 bindsym $mod+t exec ~/dotfiles/theme/carousel.sh
 
