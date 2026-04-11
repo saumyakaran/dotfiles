@@ -38,8 +38,9 @@
     },
 
     "network": {
-        "format-wifi": "󰖩 {essid}",
+        "format-wifi": "󰖩",
         "format-disconnected": "󰖩 off",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "on-click": "~/dotfiles/rofi/wifi.sh",
         "interval": 3
     },
@@ -47,27 +48,31 @@
     "bluetooth": {
         "format-on": "󰂱",
         "format-off": "󰂳",
-        "format-connected": "󰂱 {device_alias}",
+        "format-connected": "󰂱",
+        "tooltip-format-connected": "{device_alias}",
         "on-click": "rofi -modi 'bt:~/dotfiles/rofi/bluetooth.sh' -show bt -no-show-icons -p '󰂱 '"
     },
 
     "cpu": {
         "format": "󰘚 {usage}%",
+        "format-alt": "󰘚 {usage}% ({load})",
         "interval": 3,
-        "on-click": "kitty --class floating-popup -e btop"
+        "on-click-right": "kitty --class floating-popup -e btop"
     },
 
     "memory": {
-        "format": "󰍛 {used:0.1f}G/{total:0.1f}G",
+        "format": "󰍛 {used:0.1f}G",
+        "format-alt": "󰍛 {used:0.1f}G/{total:0.1f}G ({percentage}%)",
         "interval": 3,
-        "on-click": "kitty --class floating-popup -e btop"
+        "on-click-right": "kitty --class floating-popup -e btop"
     },
 
     "disk": {
-        "format": "󰆼 {used}/{total}",
+        "format": "󰆼 {percentage_used}%",
+        "format-alt": "󰆼 {used}/{total}",
         "path": "/",
         "interval": 30,
-        "on-click": "kitty --class floating-popup -e btop"
+        "on-click-right": "kitty --class floating-popup -e btop"
     },
 
     "battery": {
