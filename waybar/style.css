@@ -43,9 +43,32 @@ window#waybar {
     border-radius: 4px;
 }
 
-#custom-spotify {
-    color: @base0B;
+#custom-media {
     padding: 0 10px;
+}
+
+#custom-media.spotify {
+    color: @base0B;
+}
+
+#custom-media.youtube {
+    color: @base08;
+}
+
+#custom-media.browser {
+    color: @base09;
+}
+
+#custom-media.stremio {
+    color: @base0D;
+}
+
+#custom-media.other {
+    color: @base0E;
+}
+
+#custom-media.none {
+    color: transparent;
 }
 
 #clock,

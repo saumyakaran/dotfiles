@@ -7,7 +7,7 @@
     "margin-right": 8,
     "margin-bottom": 0,
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["custom/spotify", "clock"],
+    "modules-center": ["custom/media", "clock"],
     "modules-right": ["network", "bluetooth", "cpu", "memory", "disk", "battery"],
 
     "sway/workspaces": {
@@ -23,12 +23,12 @@
         "format": "{}"
     },
 
-    "custom/spotify": {
-        "format": "󰓇 {}",
-        "max-length": 40,
-        "exec": "~/dotfiles/waybar/spotify.sh",
-        "exec-if": "pgrep spotify",
-        "on-click": "swaymsg '[class=Spotify] scratchpad show' || spotify",
+    "custom/media": {
+        "format": "{}",
+        "max-length": 50,
+        "return-type": "json",
+        "exec": "~/dotfiles/waybar/media.sh",
+        "on-click": "~/dotfiles/waybar/media-toggle.sh",
         "tooltip": false
     },
 
