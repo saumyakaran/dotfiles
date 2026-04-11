@@ -129,9 +129,12 @@ bindsym $mod+Shift+a exec brave-browser --password-store=basic --load-extension=
 bindsym $mod+Escape exec "ssh-add -D; swaylock"
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen
+# Caffeine toggle: $mod+c to inhibit/resume idle
+bindsym $mod+c exec sh -c 'if pkill -f "caffeine-inhibit"; then notify-send -t 2000 "Caffeine" "Off"; else systemd-inhibit --what=idle --who=caffeine --why=user --mode=block bash -c "exec -a caffeine-inhibit sleep infinity" & notify-send -t 2000 "Caffeine" "On"; fi'
+
 exec swayidle -w \
-    timeout 300 'ssh-add -D; swaylock' \
-    timeout 330 'swaymsg "output * power off"' \
+    timeout 900 'ssh-add -D; swaylock' \
+    timeout 930 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
     before-sleep 'ssh-add -D; swaylock'
 
