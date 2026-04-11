@@ -141,18 +141,19 @@ generate_palette_wallpaper() {
     read -r width height < <(swaymsg -t get_outputs 2>/dev/null | python3 -c "import sys,json; o=json.load(sys.stdin)[0]; m=o['current_mode']; print(m['width'], m['height'])" 2>/dev/null || echo "1920 1080")
 
     local bg="#${colors[base00]}"
-    local swatch_size=$(( height / 12 ))
-    local gap=$(( swatch_size / 4 ))
-    local total_width=$(( swatch_size * 16 + gap * 15 ))
+    local accent_colors=(8 9 A B C D E F)
+    local count=${#accent_colors[@]}
+    local swatch_size=$(( height / 10 ))
+    local gap=$(( swatch_size / 3 ))
+    local total_width=$(( swatch_size * count + gap * (count - 1) ))
     local start_x=$(( (width - total_width) / 2 ))
     local start_y=$(( (height - swatch_size) / 2 ))
 
     local draw_cmds=""
     local x=$start_x
-    for i in 0 1 2 3 4 5 6 7 8 9 A B C D E F; do
-        local key="base0${i}"
-        local color="#${colors[$key]}"
-        draw_cmds+=" -fill '${color}' -draw 'rectangle ${x},${start_y} $(( x + swatch_size )),$(( start_y + swatch_size ))'"
+    for i in "${accent_colors[@]}"; do
+        local color="#${colors[base0${i}]}"
+        draw_cmds+=" -fill '${color}' -draw 'roundrectangle ${x},${start_y} $(( x + swatch_size )),$(( start_y + swatch_size )) 8,8'"
         x=$(( x + swatch_size + gap ))
     done
 
