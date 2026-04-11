@@ -178,6 +178,10 @@ bindsym $mod+p exec sh -c 'swaymsg "[class=Spotify] scratchpad show" || spotify'
 bindsym $mod+v exec sh -c 'if mullvad status | grep -q "Connected"; then mullvad disconnect; else mullvad connect; fi'
 bindsym $mod+Shift+v exec sh -c 'swaymsg "[class=Mullvad VPN] focus" 2>/dev/null || /opt/Mullvad\ VPN/mullvad-vpn'
 
+# Clipboard history
+exec wl-paste -t text --watch clipman store --max-items=50
+bindsym $mod+Shift+m exec ~/dotfiles/sway/clipboard.sh
+
 # Theme switcher
 bindsym $mod+t exec ~/dotfiles/theme/carousel.sh
 
