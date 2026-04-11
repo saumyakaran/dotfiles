@@ -125,7 +125,7 @@ bindsym $mod+r mode "resize"
 # App shortcuts
 bindsym $mod+Shift+b exec brave-browser --password-store=basic --load-extension=$HOME/dotfiles/theme/brave-theme --new-window
 bindsym $mod+Shift+w exec flatpak run com.stremio.Stremio
-bindsym $mod+Shift+y exec brave-browser --password-store=basic --load-extension=$HOME/dotfiles/theme/brave-theme --new-window https://youtube.com
+bindsym $mod+Shift+y exec brave-browser --password-store=basic --load-extension=$HOME/dotfiles/theme/brave-theme --app=https://youtube.com
 bindsym $mod+Shift+a exec brave-browser --password-store=basic --load-extension=$HOME/dotfiles/theme/brave-theme --new-window https://claude.ai
 bindsym Ctrl+Shift+space exec 1password --quick-access
 
