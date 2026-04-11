@@ -39,7 +39,7 @@ build_cache() {
         for c in "${colors[@]}"; do
             swatches+="<span background='#${c}'>    </span>"
         done
-        echo "${slug} ${icon}  ${swatches}   ${name}"
+        echo "${slug} ${icon}  ${name}   ${swatches}"
     done | sort -t' ' -k3 > "$cache_file"
     cat "$cache_file"
 }
