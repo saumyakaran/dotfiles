@@ -66,7 +66,7 @@ render "$DOTFILES/theme/templates/swaylock.mustache"              "$DOTFILES/swa
 render "$DOTFILES/theme/templates/rofi-colors.mustache"           "$DOTFILES/rofi/colors.rasi"
 render "$DOTFILES/theme/templates/rofi-powermenu-colors.mustache" "$DOTFILES/rofi/powermenu-colors.rasi"
 render "$DOTFILES/theme/templates/theme-vars.mustache"            "$DOTFILES/theme/vars.sh"
-render "$DOTFILES/theme/templates/gtk-colors.mustache"            "$HOME/.config/gtk-3.0/colors.css"
+render "$DOTFILES/theme/templates/gtk4-colors.mustache"          "$HOME/.config/gtk-3.0/colors.css"
 render "$DOTFILES/theme/templates/gtk4-colors.mustache"         "$HOME/.config/gtk-4.0/gtk.css"
 mkdir -p "$DOTFILES/theme/brave-theme"
 render "$DOTFILES/theme/templates/brave-theme.mustache"          "$DOTFILES/theme/brave-theme/manifest.json"
@@ -100,9 +100,9 @@ update_gtk() {
     local gtk_file="$DOTFILES/gtk/settings.ini"
     local gtk4_file="$HOME/.config/gtk-4.0/settings.ini"
     if (( luminance > 128 )); then
-        local theme="Adwaita" gtk_theme="Adwaita" dark="false"
+        local theme="adw-gtk3" gtk_theme="adw-gtk3" dark="false"
     else
-        local theme="Adwaita-dark" gtk_theme="Adwaita:dark" dark="true"
+        local theme="adw-gtk3-dark" gtk_theme="adw-gtk3-dark" dark="true"
     fi
     if [[ -f "$gtk_file" ]]; then
         sed -i 's/gtk-theme-name=.*/gtk-theme-name='"$theme"'/' "$gtk_file"

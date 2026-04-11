@@ -9,43 +9,32 @@ if [[ "$1" == "--pick" ]]; then
     tmpdir=$(mktemp -d)
     trap "rm -rf $tmpdir" EXIT
 
-    # Write full content files and build the menu
+    # Write full content files, output "index<TAB>preview" lines
     python3 -c "
-import json, os, sys
+import json
 with open('$HIST') as f:
     items = list(reversed(json.load(f)))
 for i, item in enumerate(items):
     with open(f'$tmpdir/{i}', 'w') as out:
         out.write(item)
     preview = ' '.join(item.split())[:80]
-    print(preview)
-" | fzf --ansi --no-multi --cycle --no-sort --layout=reverse \
+    print(f'{i}\t{preview}')
+" | fzf --no-multi --cycle --no-sort --layout=reverse \
         --prompt="clipboard › " \
         --header="enter pick · esc cancel" \
-        --preview="cat '$tmpdir'/{n}" \
+        --delimiter=$'\t' --with-nth=2 \
+        --preview="cat '$tmpdir'/{1}" \
         --preview-window=right:50%:wrap \
-    > "$tmpdir/choice"
+    | cut -f1 > "$tmpdir/idx"
 
-    [[ -s "$tmpdir/choice" ]] || exit 0
+    idx=$(cat "$tmpdir/idx" 2>/dev/null)
+    [[ -z "$idx" ]] && exit 0
 
-    # fzf output is the display line; find its index by matching
-    python3 -c "
-import json, subprocess
-with open('$HIST') as f:
-    items = list(reversed(json.load(f)))
-with open('$tmpdir/choice') as f:
-    choice = f.read().strip()
-# Match by preview content
-for i, item in enumerate(items):
-    preview = ' '.join(item.split())[:72]
-    if preview in choice:
-        subprocess.run(['wl-copy', '--'], input=items[i].encode(), check=True)
-        break
-"
+    # Copy the full content
+    cat "$tmpdir/$idx" | wl-copy
     exit 0
 fi
 
-# Launch floating terminal
 exec kitty --app-id floating-popup \
     --title "Clipboard History" \
     bash "$0" --pick
