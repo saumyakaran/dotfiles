@@ -1,5 +1,5 @@
 @theme "/dev/null"
-@import "powermenu-colors.rasi"
+@import "~/dotfiles/rofi/powermenu-colors.rasi"
 
 * {
     background-color: transparent;
