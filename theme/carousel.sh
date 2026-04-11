@@ -39,9 +39,12 @@ build_cache() {
         for c in "${colors[@]}"; do
             swatches+="<span background='#${c}'>    </span>"
         done
-        # Pad name to fixed width so swatches align right
+        # Pad name to fixed display width (account for multi-byte chars like é)
+        local display_len=${#name}
+        local byte_len=$(echo -n "$name" | wc -c)
+        local extra=$((byte_len - display_len))
         local padded
-        padded=$(printf "%-30s" "$name")
+        padded=$(printf "%-$((30 + extra))s" "$name")
         echo "${slug} ${icon}  ${padded} ${swatches}"
     done | sort -t' ' -k3 > "$cache_file"
     cat "$cache_file"
