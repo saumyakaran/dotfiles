@@ -159,6 +159,9 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && n
 # Floating popups
 for_window [app_id="floating-popup"] floating enable, resize set 1400 900, move position center
 
+# Theme switcher
+bindsym $mod+t exec ~/dotfiles/theme/carousel.sh
+
 # Autostart
 exec mako
 bar {
