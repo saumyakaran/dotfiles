@@ -220,10 +220,10 @@ notify_brave() {
 # Spicetify
 apply_spicetify() {
     command -v spicetify &>/dev/null || return 0
-    local spicetify_theme_dir="$HOME/.config/spicetify/Themes/base16"
-    mkdir -p "$spicetify_theme_dir"
+    local spicetify_theme_dir="$HOME/.config/spicetify/Themes/text"
+    [[ -d "$spicetify_theme_dir" ]] || return 0
     render "$DOTFILES/theme/templates/spicetify-color.mustache" "$spicetify_theme_dir/color.ini"
-    spicetify config current_theme base16 2>/dev/null || true
+    spicetify config current_theme text color_scheme base16 2>/dev/null || true
     spicetify apply 2>/dev/null || true
 }
 
