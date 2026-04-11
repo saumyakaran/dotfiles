@@ -81,9 +81,9 @@ while true; do
         -kb-cancel "Escape" \
         -mesg "C-j/k=nav | Enter=preview/confirm | Esc=revert" \
         -theme-str 'window {width: 600px;}' \
-        -theme-str 'listview {lines: 15;}' \
-        -theme-str 'element {padding: 8px 16px; width: 100%;}' \
-        -theme-str 'element-text {width: 100%;}' \
+        -theme-str 'listview {lines: 15; fixed-height: true;}' \
+        -theme-str 'element {padding: 8px 16px;}' \
+        -theme-str 'listview, element, element-text {expand: true;}' \
         2>/dev/null) || {
         # Esc pressed — revert
         "$APPLY" "$PREV_THEME"
