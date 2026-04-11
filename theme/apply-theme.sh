@@ -58,19 +58,16 @@ echo "$SCHEME" > "$DOTFILES/theme/current"
 
 # Reload running apps
 reload_apps() {
-    if pgrep -x sway &>/dev/null; then
-        swaymsg reload 2>/dev/null || true
-    fi
-    if pgrep -x waybar &>/dev/null; then
-        killall waybar 2>/dev/null
-        waybar &>/dev/null &
-        disown
-    fi
+    # Kitty and mako first (before sway reload kills/restarts waybar)
     if pgrep -x kitty &>/dev/null; then
         kill -SIGUSR1 $(pgrep -x kitty) 2>/dev/null || true
     fi
     if pgrep -x mako &>/dev/null; then
         makoctl reload 2>/dev/null || true
+    fi
+    # Sway reload also restarts waybar (managed via swaybar_command)
+    if pgrep -x sway &>/dev/null; then
+        swaymsg reload 2>/dev/null || true
     fi
 }
 

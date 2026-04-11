@@ -7,26 +7,12 @@ CURRENT_FILE="$DOTFILES/theme/current"
 PREV_THEME=$(cat "$CURRENT_FILE" 2>/dev/null || echo "base16-catppuccin-macchiato")
 CURRENT_PREVIEW="$PREV_THEME"
 
-# Get all base16 scheme names
-schemes() {
-    tinty list 2>/dev/null | grep '^base16-' | sort
-}
-
-# Build display list with current marked
-build_list() {
-    local current="$1"
-    schemes | while read -r scheme; do
-        if [[ "$scheme" == "$current" ]]; then
-            echo "* $scheme"
-        else
-            echo "  $scheme"
-        fi
-    done
-}
+# Cache scheme list once
+SCHEMES=$(tinty list 2>/dev/null | grep '^base16-' | sort)
 
 while true; do
-    chosen=$(build_list "$CURRENT_PREVIEW" | rofi -dmenu \
-        -p "Theme" \
+    chosen=$(echo "$SCHEMES" | rofi -dmenu \
+        -p " Theme" \
         -i \
         -no-custom \
         -kb-accept-alt "" \
@@ -35,14 +21,14 @@ while true; do
         -kb-accept-entry "Return" \
         -kb-cancel "Escape" \
         -mesg "Enter=preview/confirm | Esc=revert" \
+        -theme-str 'window {width: 400px;}' \
+        -theme-str 'listview {lines: 12;}' \
         2>/dev/null) || {
         # Esc pressed — revert
         "$APPLY" "$PREV_THEME"
         exit 0
     }
 
-    # Strip prefix
-    chosen=$(echo "$chosen" | sed 's/^[* ] *//')
     [[ -z "$chosen" ]] && continue
 
     if [[ "$chosen" == "$CURRENT_PREVIEW" ]]; then
@@ -52,5 +38,5 @@ while true; do
 
     # Preview this scheme
     CURRENT_PREVIEW="$chosen"
-    "$APPLY" "$chosen" &
+    "$APPLY" "$chosen"
 done

@@ -70,7 +70,9 @@
             "critical": 15
         },
         "format": "{icon} {capacity}%",
+        "format-alt": "{icon} {time}",
         "format-charging": "{icon} {capacity}% 󱐋",
+        "format-charging-alt": "{icon} {time} 󱐋",
         "format-full": "{icon} 100%",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂"],
         "interval": 5
