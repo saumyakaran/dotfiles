@@ -282,8 +282,12 @@ PYEOF
 # Brave theme notification
 notify_brave() {
     local dr_colors="bg: #${colors[base00]}  text: #${colors[base05]}  accent: #${colors[base0D]}"
+    local old_dr=$(cat "$DOTFILES/theme/dark-reader.txt" 2>/dev/null)
     echo "$dr_colors" > "$DOTFILES/theme/dark-reader.txt"
-    notify-send -t 5000 "Theme" "Dark Reader: $dr_colors" 2>/dev/null || true
+    # Only notify if theme actually changed
+    if [[ "$dr_colors" != "$old_dr" ]]; then
+        notify-send -t 5000 "Theme" "Dark Reader: $dr_colors" 2>/dev/null || true
+    fi
 }
 
 # Spicetify
