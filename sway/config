@@ -171,7 +171,7 @@ for_window [class="Spotify"] move scratchpad
 bindsym $mod+p exec sh -c 'swaymsg "[class=Spotify] scratchpad show" || spotify'
 
 # Mullvad: $mod+v to toggle VPN, $mod+Shift+v to toggle GUI
-bindsym $mod+v exec sh -c 'if mullvad status | grep -q "Connected"; then mullvad disconnect && notify-send -t 2000 "󰖂 Mullvad" "Disconnected"; else mullvad connect && notify-send -t 2000 "󰖂 Mullvad" "Connecting..."; fi'
+bindsym $mod+v exec sh -c 'if mullvad status | grep -q "Connected"; then mullvad disconnect && notify-send -t 2000 "󰖂 Mullvad" "Disconnected"; else mullvad connect && sleep 2 && if mullvad status | grep -q "Connected"; then notify-send -t 2000 "󰖂 Mullvad" "Connected"; else notify-send -t 3000 "󰖂 Mullvad" "Failed to connect"; fi; fi'
 bindsym $mod+Shift+v exec sh -c 'if pgrep -f mullvad-gui >/dev/null; then pkill -f mullvad-gui; else /opt/Mullvad\ VPN/mullvad-vpn; fi'
 
 # Theme switcher
