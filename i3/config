@@ -3,33 +3,7 @@ set $mod Mod4
 set $term kitty
 set $menu rofi -show drun -show-icons -dpi 144
 
-# Catppuccin Macchiato colors
-set $rosewater #f4dbd6
-set $flamingo  #f0c6c6
-set $pink      #f5bde6
-set $mauve     #c6a0f6
-set $red       #ed8796
-set $maroon    #ee99a0
-set $peach     #f5a97f
-set $yellow    #eed49f
-set $green     #a6da95
-set $teal      #8bd5ca
-set $sky       #91d7e3
-set $sapphire  #7dc4e4
-set $blue      #8aadf4
-set $lavender  #b7bdf8
-set $text      #cad3f5
-set $subtext1  #b8c0e0
-set $subtext0  #a5adcb
-set $overlay2  #939ab7
-set $overlay1  #8087a2
-set $overlay0  #6e738d
-set $surface2  #5b6078
-set $surface1  #494d64
-set $surface0  #363a4f
-set $base      #24273a
-set $mantle    #1e2030
-set $crust     #181926
+include ~/dotfiles/i3/colors
 
 # Font
 font pango:GeistMono Nerd Font 10
@@ -45,10 +19,10 @@ gaps outer 4
 gaps top 36
 
 # Window colors          border    bg        text      indicator child_border
-client.focused           $blue     $base     $text     $blue     $blue
-client.focused_inactive  $surface1 $base     $subtext1 $surface1 $surface1
-client.unfocused         $surface0 $base     $overlay0 $surface0 $surface0
-client.urgent            $red      $base     $text     $red      $red
+client.focused           $base0D   $base00   $base05   $base0D   $base0D
+client.focused_inactive  $base03   $base00   $base04   $base03   $base03
+client.unfocused         $base02   $base00   $base03   $base02   $base02
+client.urgent            $base08   $base00   $base05   $base08   $base08
 
 # Key bindings
 bindsym $mod+Return exec $term
