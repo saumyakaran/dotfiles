@@ -4,6 +4,8 @@ configuration {
     font: "GeistMono Nerd Font 10";
     display-drun: "";
     drun-display-format: "{name}";
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
 }
 
 @theme "/dev/null"

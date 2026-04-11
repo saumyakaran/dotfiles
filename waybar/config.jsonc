@@ -39,7 +39,7 @@
         "format-on": "󰂱",
         "format-off": "󰂳",
         "format-connected": "󰂱 {device_alias}",
-        "on-click": "~/dotfiles/rofi/bluetooth.sh"
+        "on-click": "rofi -modi 'bt:~/dotfiles/rofi/bluetooth.sh' -show bt -no-show-icons -p '󰂱 '"
     },
 
     "cpu": {
