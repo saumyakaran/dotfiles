@@ -37,7 +37,7 @@ build_cache() {
         [[ "$variant" == "light" ]] && icon="󰖨"
         local swatches=""
         for c in "${colors[@]}"; do
-            swatches+="<span background='#${c}'>   </span> "
+            swatches+="<span background='#${c}'>    </span>"
         done
         # Pad name to fixed width so swatches align right
         local padded
