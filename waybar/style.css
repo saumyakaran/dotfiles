@@ -43,6 +43,11 @@ window#waybar {
     border-radius: 4px;
 }
 
+#custom-spotify {
+    color: @base0B;
+    padding: 0 10px;
+}
+
 #clock,
 #network,
 #bluetooth,

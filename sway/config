@@ -25,6 +25,14 @@ hide_edge_borders smart
 # Gaps
 gaps inner 8
 
+# SwayFX effects (requires swayfx binary - logout/login to activate)
+#corner_radius 8
+#smart_corner_radius enable
+#shadows enable
+#shadow_blur_radius 20
+#shadow_color #00000066
+#default_dim_inactive 0.05
+
 # Window colors          border    bg        text      indicator child_border
 client.focused           $base0D   $base00   $base05   $base0D   $base0D
 client.focused_inactive  $base03   $base00   $base04   $base03   $base03
