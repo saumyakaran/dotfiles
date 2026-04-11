@@ -161,7 +161,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 5%+ && ~/dotfiles/sway/notify
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && ~/dotfiles/sway/notify-vol.sh
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && ~/dotfiles/sway/notify-vol.sh
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && ~/dotfiles/sway/notify-vol.sh
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send -t 1000 -h string:x-canonical-private-synchronous:mic "Mic" "$(pactl get-source-mute @DEFAULT_SOURCE@)"
+bindsym XF86AudioMicMute exec sh -c 'pactl set-source-mute @DEFAULT_SOURCE@ toggle && if pactl get-source-mute @DEFAULT_SOURCE@ | grep -q "yes"; then notify-send -t 1500 -h string:x-canonical-private-synchronous:mic "󰍭 Mic" "Muted"; else notify-send -t 1500 -h string:x-canonical-private-synchronous:mic "󰍬 Mic" "Unmuted"; fi'
 
 # Floating popups
 for_window [app_id="floating-popup"] floating enable, resize set 1400 900, move position center
