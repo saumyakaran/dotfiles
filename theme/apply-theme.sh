@@ -132,6 +132,10 @@ apply_wallpaper() {
 
     # Write sway include file so wallpaper persists across reloads
     echo "output * bg $wallpaper fill" > "$DOTFILES/theme/sway-wallpaper"
+    # Apply immediately
+    if pgrep -x sway &>/dev/null; then
+        swaymsg "output * bg $wallpaper fill" 2>/dev/null || true
+    fi
 }
 
 generate_palette_wallpaper() {
@@ -139,24 +143,62 @@ generate_palette_wallpaper() {
     local width height
     read -r width height < <(swaymsg -t get_outputs 2>/dev/null | python3 -c "import sys,json; o=json.load(sys.stdin)[0]; m=o['current_mode']; print(m['width'], m['height'])" 2>/dev/null || echo "1920 1080")
 
-    local bg="#${colors[base00]}"
-    local accent_colors=(8 9 A B C D E F)
-    local count=${#accent_colors[@]}
-    local swatch_size=$(( height / 10 ))
-    local gap=$(( swatch_size / 3 ))
-    local total_width=$(( swatch_size * count + gap * (count - 1) ))
-    local start_x=$(( (width - total_width) / 2 ))
-    local start_y=$(( (height - swatch_size) / 2 ))
+    python3 - "$output" "$width" "$height" \
+        "${colors[base00]}" "${colors[base0A]}" \
+        "${colors[base08]}" "${colors[base0B]}" "${colors[base0D]}" "${colors[base0E]}" <<'PYEOF'
+import sys
+from PIL import Image, ImageDraw
 
-    local draw_cmds=""
-    local x=$start_x
-    for i in "${accent_colors[@]}"; do
-        local color="#${colors[base0${i}]}"
-        draw_cmds+=" -fill '${color}' -draw 'roundrectangle ${x},${start_y} $(( x + swatch_size )),$(( start_y + swatch_size )) 8,8'"
-        x=$(( x + swatch_size + gap ))
-    done
+output, w, h = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
+bg = f"#{sys.argv[4]}"
+pac_color = f"#{sys.argv[5]}"
+ghost_colors = [f"#{c}" for c in sys.argv[6:]]
 
-    eval magick -size "${width}x${height}" "xc:${bg}" $draw_cmds "$output"
+img = Image.new("RGB", (w, h), bg)
+draw = ImageDraw.Draw(img)
+
+r = int(h / 22)  # ~20% smaller than h//18
+gap = int(r * 1.2)
+ng = len(ghost_colors)
+total_w = r * 2 + ng * r * 2 + (ng) * gap  # pac + ghosts + gaps between all
+cx_start = (w - total_w) // 2 + r
+cy = h // 2
+
+def draw_pacman(cx, cy, r, color, bg):
+    draw.pieslice((cx - r, cy - r, cx + r, cy + r), start=35, end=325, fill=color)
+
+def draw_ghost(cx, cy, r, color, bg):
+    draw.pieslice((cx - r, cy - r, cx + r, cy + r), start=180, end=360, fill=color)
+    draw.rectangle((cx - r, cy, cx + r, cy + r), fill=color)
+    # Zigzag skirt
+    bot = cy + r
+    teeth = 3
+    tw = (2 * r) / teeth
+    th = r // 3
+    pts = [(cx - r, bot)]
+    for i in range(teeth):
+        pts.append((int(cx - r + i * tw + tw / 2), bot + th))
+        pts.append((int(cx - r + (i + 1) * tw), bot))
+    draw.rectangle((cx - r, bot, cx + r, bot + th + 1), fill=bg)
+    draw.polygon(pts, fill=color)
+    # Eyes
+    er = r // 4
+    pr = er // 2
+    for ex_off in (-r // 3, r // 3):
+        ex = cx + ex_off
+        ey = cy - r // 5
+        draw.ellipse((ex - er, ey - er, ex + er, ey + er), fill="white")
+        draw.ellipse((ex - pr + 2, ey - pr, ex + pr + 2, ey + pr), fill=bg)
+
+x = cx_start
+draw_pacman(x, cy, r, pac_color, bg)
+x += r + gap + r
+for gc in ghost_colors:
+    draw_ghost(x, cy, r, gc, bg)
+    x += r * 2 + gap
+
+img.save(output)
+PYEOF
 }
 
 # Brave theme notification

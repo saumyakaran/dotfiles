@@ -6,25 +6,68 @@ export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 DOTFILES="$HOME/dotfiles"
 APPLY="$DOTFILES/theme/apply-theme.sh"
 CURRENT_FILE="$DOTFILES/theme/current"
+SCHEMES_DIR="$HOME/.local/share/tinted-theming/tinty/repos/schemes/base16"
 PREV_THEME=$(cat "$CURRENT_FILE" 2>/dev/null || echo "base16-catppuccin-macchiato")
 CURRENT_PREVIEW="$PREV_THEME"
 
-# Cache scheme list once
-SCHEMES=$(tinty list 2>/dev/null | grep '^base16-' | sort)
+# Build display list: "slug\0display\x1ftrue\n" with pango markup
+# Format: colored squares + pretty name, mapped to slug
+build_cache() {
+    local cache_file="/tmp/theme-carousel-cache"
+    if [[ -f "$cache_file" ]]; then
+        cat "$cache_file"
+        return
+    fi
+    for yaml in "$SCHEMES_DIR"/*.yaml; do
+        local slug="base16-$(basename "$yaml" .yaml)"
+        local name="" colors=()
+        while IFS= read -r line; do
+            if [[ "$line" =~ ^name:\ *\"?(.+?)\"?$ ]]; then
+                name="${BASH_REMATCH[1]}"
+                name="${name%\"}"
+            elif [[ "$line" =~ ^[[:space:]]+(base0[89A-Fa-f]):[[:space:]]*\"?\#?([0-9a-fA-F]{6}) ]]; then
+                colors+=("${BASH_REMATCH[2]}")
+            fi
+        done < "$yaml"
+        [[ -z "$name" ]] && name="$slug"
+        # Build pango: 8 colored squares (accent colors) + name
+        local swatches=""
+        for c in "${colors[@]}"; do
+            swatches+="<span foreground='#${c}'>\u2588</span>"
+        done
+        echo "${slug} ${swatches}  ${name}"
+    done | sort -t' ' -k3 > "$cache_file"
+    cat "$cache_file"
+}
+
+ENTRIES=$(build_cache)
 SELECTED_ROW=0
 
 # Find the row index of the current theme
 if [[ -n "$PREV_THEME" ]]; then
-    idx=$(echo "$SCHEMES" | grep -n "^${PREV_THEME}$" | cut -d: -f1)
+    idx=$(echo "$ENTRIES" | grep -n "^${PREV_THEME} " | cut -d: -f1)
     [[ -n "$idx" ]] && SELECTED_ROW=$((idx - 1))
 fi
 
+# Display list (everything after the slug)
+display_list() {
+    echo "$ENTRIES" | while read -r slug rest; do
+        echo "$rest"
+    done
+}
+
+# Map display index back to slug
+slug_at() {
+    echo "$ENTRIES" | sed -n "$((${1} + 1))p" | cut -d' ' -f1
+}
+
 while true; do
-    result=$(echo "$SCHEMES" | rofi -dmenu \
+    result=$(display_list | rofi -dmenu \
         -p " Theme" \
         -i \
         -no-custom \
-        -format 'i s' \
+        -markup-rows \
+        -format 'i' \
         -selected-row "$SELECTED_ROW" \
         -kb-accept-alt "" \
         -kb-remove-to-eol "" \
@@ -33,8 +76,8 @@ while true; do
         -kb-accept-entry "Return" \
         -kb-cancel "Escape" \
         -mesg "C-j/k=nav | Enter=preview/confirm | Esc=revert" \
-        -theme-str 'window {width: 400px;}' \
-        -theme-str 'listview {lines: 12;}' \
+        -theme-str 'window {width: 500px;}' \
+        -theme-str 'listview {lines: 15;}' \
         2>/dev/null) || {
         # Esc pressed — revert
         "$APPLY" "$PREV_THEME"
@@ -42,10 +85,8 @@ while true; do
     }
 
     [[ -z "$result" ]] && continue
-
-    # Parse index and scheme name from "idx scheme-name"
-    SELECTED_ROW="${result%% *}"
-    chosen="${result#* }"
+    SELECTED_ROW="$result"
+    chosen=$(slug_at "$result")
 
     if [[ "$chosen" == "$CURRENT_PREVIEW" ]]; then
         # Same scheme selected twice — confirm
