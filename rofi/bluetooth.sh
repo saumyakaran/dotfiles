@@ -32,10 +32,11 @@ build_menu() {
         esac
 
         if echo "$connected" | grep -q "$mac"; then
-            echo -e "$icon  $name  󰄬  Connected\0info\x1fdisconnect:$mac"
+            echo -e "$icon  $name  󰄬\0info\x1fdisconnect:$mac"
         else
-            echo -e "$icon  $name      Paired\0info\x1fconnect:$mac"
+            echo -e "$icon  $name\0info\x1fconnect:$mac"
         fi
+        echo -e "   󰆴  Forget $name\0info\x1fforget:$mac"
     done <<< "$paired"
 
     # Show discovered but unpaired devices
@@ -88,6 +89,13 @@ case "$ROFI_INFO" in
         mac="${ROFI_INFO#disconnect:}"
         name=$(bluetoothctl info "$mac" 2>/dev/null | grep "Alias:" | cut -d' ' -f2-)
         bluetoothctl disconnect "$mac" && notify-send "Bluetooth" "Disconnected $name" || notify-send "Bluetooth" "Failed"
+        build_menu
+        ;;
+    forget:*)
+        mac="${ROFI_INFO#forget:}"
+        name=$(bluetoothctl info "$mac" 2>/dev/null | grep "Alias:" | cut -d' ' -f2-)
+        bluetoothctl disconnect "$mac" 2>/dev/null
+        bluetoothctl remove "$mac" && notify-send "Bluetooth" "Forgot $name" || notify-send "Bluetooth" "Failed to forget"
         build_menu
         ;;
     pair:*)
