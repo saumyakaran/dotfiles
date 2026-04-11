@@ -80,10 +80,7 @@ while true; do
         -kb-accept-entry "Return" \
         -kb-cancel "Escape" \
         -mesg "C-j/k=nav | Enter=preview/confirm | Esc=revert" \
-        -theme-str 'window {width: 600px;}' \
-        -theme-str 'listview {lines: 15; fixed-height: true;}' \
-        -theme-str 'element {padding: 8px 16px;}' \
-        -theme-str 'listview, element, element-text {expand: true;}' \
+        -theme ~/dotfiles/rofi/carousel.rasi \
         2>/dev/null) || {
         # Esc pressed — revert
         "$APPLY" "$PREV_THEME"

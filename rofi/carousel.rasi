@@ -1,0 +1,71 @@
+@theme "/dev/null"
+@import "/home/void/dotfiles/rofi/colors.rasi"
+
+* {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    width: 600px;
+    background-color: @bg;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+mainbox {
+    background-color: @bg;
+}
+
+inputbar {
+    children: [entry];
+    background-color: @bg;
+    padding: 0px;
+}
+
+entry {
+    background-color: @bg-alt;
+    text-color: @fg;
+    padding: 10px 12px;
+    border-radius: 4px;
+    placeholder: "Search...";
+    placeholder-color: @fg-alt;
+}
+
+message {
+    background-color: @bg;
+    padding: 4px 12px;
+}
+
+textbox {
+    background-color: @bg;
+    text-color: @fg-alt;
+}
+
+listview {
+    columns: 1;
+    lines: 15;
+    fixed-height: true;
+    background-color: @bg;
+    padding: 8px 0 0 0;
+}
+
+element {
+    padding: 8px 12px;
+    background-color: @bg;
+    text-color: @fg;
+    border-radius: 4px;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+element selected {
+    background-color: @bg-alt;
+    text-color: @accent;
+}
