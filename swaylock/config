@@ -1,7 +1,8 @@
 ignore-empty-password
 show-failed-attempts
 
-color=1e2030
+image=~/Pictures/Wallpapers/Cloudy_Quasar_1-Catppuccin_Macchiato.png
+scaling=fill
 font=GeistMono Nerd Font
 font-size=14
 
