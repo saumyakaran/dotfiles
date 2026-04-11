@@ -127,6 +127,8 @@ bindsym $mod+Shift+a exec brave-browser --password-store=basic --load-extension=
 
 # Screen lock
 bindsym $mod+Escape exec "ssh-add -D; swaylock"
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
 exec swayidle -w \
     timeout 300 'ssh-add -D; swaylock' \
     timeout 330 'swaymsg "output * power off"' \
