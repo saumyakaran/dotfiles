@@ -9,7 +9,7 @@ configuration {
 }
 
 @theme "/dev/null"
-@import "~/dotfiles/rofi/colors.rasi"
+@import "/home/void/dotfiles/rofi/colors.rasi"
 
 * {
     background-color: transparent;
