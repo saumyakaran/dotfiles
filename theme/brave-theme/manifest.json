@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "version": "1.0",
+  "name": "Base16 Theme",
+  "theme": {
+    "colors": {
+      "frame": [36, 39, 58],
+      "frame_inactive": [36, 39, 58],
+      "toolbar": [30, 32, 48],
+      "tab_background_inactive": [54, 58, 79],
+      "tab_text": [202, 211, 245],
+      "bookmark_text": [202, 211, 245],
+      "ntp_background": [36, 39, 58],
+      "ntp_text": [202, 211, 245],
+      "omnibox_background": [30, 32, 48],
+      "omnibox_text": [202, 211, 245]
+    }
+  }
+}
