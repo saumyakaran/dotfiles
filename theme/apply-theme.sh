@@ -281,12 +281,9 @@ PYEOF
 
 # Brave theme notification
 notify_brave() {
-    if pgrep -f brave &>/dev/null; then
-        printf "bg: #%s\ntext: #%s\naccent: #%s\n" \
-            "${colors[base00]}" "${colors[base05]}" "${colors[base0D]}" \
-            | wl-copy 2>/dev/null || true
-        notify-send -t 5000 "Theme" "Restart Brave — Dark Reader colors copied to clipboard" 2>/dev/null || true
-    fi
+    local dr_colors="bg: #${colors[base00]}  text: #${colors[base05]}  accent: #${colors[base0D]}"
+    echo "$dr_colors" > "$DOTFILES/theme/dark-reader.txt"
+    notify-send -t 5000 "Theme" "Dark Reader: $dr_colors" 2>/dev/null || true
 }
 
 # Spicetify
