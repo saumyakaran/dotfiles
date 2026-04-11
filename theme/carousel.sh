@@ -18,25 +18,28 @@ build_cache() {
         cat "$cache_file"
         return
     fi
+    local block=$'\u2588'
     for yaml in "$SCHEMES_DIR"/*.yaml; do
         local slug="base16-$(basename "$yaml" .yaml)"
-        local name="" colors=()
+        local name="" variant="" colors=()
         while IFS= read -r line; do
             if [[ "$line" =~ ^name:\ *\"?(.+?)\"?$ ]]; then
                 name="${BASH_REMATCH[1]}"
                 name="${name%\"}"
+            elif [[ "$line" =~ ^variant:\ *\"?(light|dark)\"? ]]; then
+                variant="${BASH_REMATCH[1]}"
             elif [[ "$line" =~ ^[[:space:]]+(base0[89A-Fa-f]):[[:space:]]*\"?\#?([0-9a-fA-F]{6}) ]]; then
                 colors+=("${BASH_REMATCH[2]}")
             fi
         done < "$yaml"
         [[ -z "$name" ]] && name="$slug"
-        # Build pango: 8 colored squares (accent colors) + name
+        local icon="󰖔"
+        [[ "$variant" == "light" ]] && icon="󰖨"
         local swatches=""
-        local block=$'\u2588'
         for c in "${colors[@]}"; do
-            swatches+="<span foreground='#${c}'>${block}</span>"
+            swatches+="<span foreground='#${c}'>${block}${block}</span>"
         done
-        echo "${slug} ${swatches}  ${name}"
+        echo "${slug} ${icon} ${swatches}  ${name}"
     done | sort -t' ' -k3 > "$cache_file"
     cat "$cache_file"
 }
@@ -77,8 +80,9 @@ while true; do
         -kb-accept-entry "Return" \
         -kb-cancel "Escape" \
         -mesg "C-j/k=nav | Enter=preview/confirm | Esc=revert" \
-        -theme-str 'window {width: 500px;}' \
+        -theme-str 'window {width: 600px;}' \
         -theme-str 'listview {lines: 15;}' \
+        -theme-str 'element {padding: 6px 12px;}' \
         2>/dev/null) || {
         # Esc pressed — revert
         "$APPLY" "$PREV_THEME"
