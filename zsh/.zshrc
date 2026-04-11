@@ -9,14 +9,17 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
+### ── Theme colors ────────────────────────────────────────────────────────────
+[[ -r ~/dotfiles/theme/vars.sh ]] && source ~/dotfiles/theme/vars.sh
+
 ### ── Prompt ──────────────────────────────────────────────────────────────────
 autoload -Uz add-zsh-hook vcs_info
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' formats ' %F{#c6a0f6}(%b)%f'
-zstyle ':vcs_info:*' actionformats ' %F{#c6a0f6}(%b|%a)%f'
+zstyle ':vcs_info:*' formats " %F{#${BASE0E:-c6a0f6}}(%b)%f"
+zstyle ':vcs_info:*' actionformats " %F{#${BASE0E:-c6a0f6}}(%b|%a)%f"
 add-zsh-hook precmd vcs_info
 setopt PROMPT_SUBST
-PS1='%F{#8aadf4}%~%f${vcs_info_msg_0_} %(?.%F{#a6da95}.%F{#ed8796})$%f '
+PS1='%F{#'${BASE0D:-8aadf4}'}%~%f${vcs_info_msg_0_} %(?.%F{#'${BASE0B:-a6da95}'}.%F{#'${BASE08:-ed8796}'})$%f '
 
 ### ── Environment Variables ────────────────────────────────────────────────────
 if command -v nvim >/dev/null 2>&1; then

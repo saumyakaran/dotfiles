@@ -45,12 +45,9 @@ render() {
 
 # Render all templates
 render "$DOTFILES/theme/templates/sway-colors.mustache"           "$DOTFILES/sway/colors"
-render "$DOTFILES/theme/templates/i3-colors.mustache"             "$DOTFILES/i3/colors"
 render "$DOTFILES/theme/templates/waybar-colors.mustache"         "$DOTFILES/waybar/colors.css"
-render "$DOTFILES/theme/templates/polybar-colors.mustache"        "$DOTFILES/polybar/colors.ini"
 render "$DOTFILES/theme/templates/kitty-colors.mustache"          "$DOTFILES/kitty/colors.conf"
 render "$DOTFILES/theme/templates/mako.mustache"                  "$DOTFILES/mako/config"
-render "$DOTFILES/theme/templates/dunst.mustache"                 "$DOTFILES/dunst/dunstrc"
 render "$DOTFILES/theme/templates/swaylock.mustache"              "$DOTFILES/swaylock/config"
 render "$DOTFILES/theme/templates/rofi-colors.mustache"           "$DOTFILES/rofi/colors.rasi"
 render "$DOTFILES/theme/templates/rofi-powermenu-colors.mustache" "$DOTFILES/rofi/powermenu-colors.rasi"
@@ -84,7 +81,7 @@ update_gtk() {
     local g=$((16#${hex:2:2}))
     local b=$((16#${hex:4:2}))
     local luminance=$(( (r * 299 + g * 587 + b * 114) / 1000 ))
-    local gtk_file="$DOTFILES/gtk-3.0-settings.ini"
+    local gtk_file="$DOTFILES/gtk/settings.ini"
     if [[ -f "$gtk_file" ]]; then
         if (( luminance > 128 )); then
             sed -i 's/gtk-theme-name=.*/gtk-theme-name=Adwaita/' "$gtk_file"
