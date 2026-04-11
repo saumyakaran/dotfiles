@@ -27,11 +27,12 @@ while true; do
         -format 'i s' \
         -selected-row "$SELECTED_ROW" \
         -kb-accept-alt "" \
-        -kb-row-down "j,Down" \
-        -kb-row-up "k,Up" \
+        -kb-remove-to-eol "" \
+        -kb-row-down "Control+j,Down" \
+        -kb-row-up "Control+k,Up" \
         -kb-accept-entry "Return" \
         -kb-cancel "Escape" \
-        -mesg "Enter=preview/confirm | Esc=revert" \
+        -mesg "C-j/k=nav | Enter=preview/confirm | Esc=revert" \
         -theme-str 'window {width: 400px;}' \
         -theme-str 'listview {lines: 12;}' \
         2>/dev/null) || {
