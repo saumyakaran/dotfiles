@@ -4,16 +4,16 @@
   "name": "Base16 Theme",
   "theme": {
     "colors": {
-      "frame": [25, 25, 25],
-      "frame_inactive": [25, 25, 25],
-      "toolbar": [222, 110, 124],
-      "tab_background_inactive": [129, 155, 105],
-      "tab_text": [178, 121, 167],
-      "bookmark_text": [178, 121, 167],
-      "ntp_background": [25, 25, 25],
-      "ntp_text": [178, 121, 167],
-      "omnibox_background": [222, 110, 124],
-      "omnibox_text": [178, 121, 167]
+      "frame": [39, 40, 34],
+      "frame_inactive": [39, 40, 34],
+      "toolbar": [56, 56, 48],
+      "tab_background_inactive": [73, 72, 62],
+      "tab_text": [248, 248, 242],
+      "bookmark_text": [248, 248, 242],
+      "ntp_background": [39, 40, 34],
+      "ntp_text": [248, 248, 242],
+      "omnibox_background": [56, 56, 48],
+      "omnibox_text": [248, 248, 242]
     }
   }
 }

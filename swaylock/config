@@ -1,7 +1,7 @@
 ignore-empty-password
 show-failed-attempts
 
-image=~/Pictures/Wallpapers/Cloudy_Quasar_1-Catppuccin_Macchiato.png
+image=~/dotfiles/theme/lockscreen.png
 scaling=fill
 font=GeistMono Nerd Font
 font-size=14
@@ -10,22 +10,22 @@ indicator-radius=120
 indicator-thickness=8
 indicator-caps-lock
 
-inside-color=191919
-inside-clear-color=191919
-inside-caps-lock-color=191919
-inside-ver-color=191919
-inside-wrong-color=191919
+inside-color=272822
+inside-clear-color=272822
+inside-caps-lock-color=272822
+inside-ver-color=272822
+inside-wrong-color=272822
 
-ring-color=B77E64
-ring-clear-color=E8838F
-ring-caps-lock-color=8BAE68
-ring-ver-color=CF86C1
-ring-wrong-color=3D3839
+ring-color=75715e
+ring-clear-color=fd971f
+ring-caps-lock-color=f4bf75
+ring-ver-color=66d9ef
+ring-wrong-color=f92672
 
-key-hl-color=CF86C1
-bs-hl-color=E8838F
-caps-lock-key-hl-color=8BAE68
-caps-lock-bs-hl-color=E8838F
+key-hl-color=66d9ef
+bs-hl-color=fd971f
+caps-lock-key-hl-color=f4bf75
+caps-lock-bs-hl-color=fd971f
 
 line-color=00000000
 line-clear-color=00000000
@@ -35,8 +35,8 @@ line-wrong-color=00000000
 
 separator-color=00000000
 
-text-color=B279A7
-text-clear-color=E8838F
-text-caps-lock-color=8BAE68
-text-ver-color=CF86C1
-text-wrong-color=3D3839
+text-color=f8f8f2
+text-clear-color=fd971f
+text-caps-lock-color=f4bf75
+text-ver-color=66d9ef
+text-wrong-color=f92672

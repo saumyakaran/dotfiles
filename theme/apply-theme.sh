@@ -67,8 +67,10 @@ render "$DOTFILES/theme/templates/rofi-colors.mustache"           "$DOTFILES/rof
 render "$DOTFILES/theme/templates/rofi-powermenu-colors.mustache" "$DOTFILES/rofi/powermenu-colors.rasi"
 render "$DOTFILES/theme/templates/theme-vars.mustache"            "$DOTFILES/theme/vars.sh"
 render "$DOTFILES/theme/templates/gtk-colors.mustache"            "$HOME/.config/gtk-3.0/colors.css"
+render "$DOTFILES/theme/templates/gtk4-colors.mustache"         "$HOME/.config/gtk-4.0/gtk.css"
 mkdir -p "$DOTFILES/theme/brave-theme"
 render "$DOTFILES/theme/templates/brave-theme.mustache"          "$DOTFILES/theme/brave-theme/manifest.json"
+render "$DOTFILES/theme/templates/base16-vars-colors.mustache"  "$DOTFILES/theme/base16-vars/colors.css"
 
 # Save current scheme
 echo "$SCHEME" > "$DOTFILES/theme/current"
@@ -96,13 +98,22 @@ update_gtk() {
     local b=$((16#${hex:4:2}))
     local luminance=$(( (r * 299 + g * 587 + b * 114) / 1000 ))
     local gtk_file="$DOTFILES/gtk/settings.ini"
+    local gtk4_file="$HOME/.config/gtk-4.0/settings.ini"
+    if (( luminance > 128 )); then
+        local theme="Adwaita" dark="false"
+    else
+        local theme="Adwaita-dark" dark="true"
+    fi
     if [[ -f "$gtk_file" ]]; then
-        if (( luminance > 128 )); then
-            sed -i 's/gtk-theme-name=.*/gtk-theme-name=Adwaita/' "$gtk_file"
-            sed -i 's/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=false/' "$gtk_file"
+        sed -i 's/gtk-theme-name=.*/gtk-theme-name='"$theme"'/' "$gtk_file"
+        sed -i 's/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme='"$dark"'/' "$gtk_file"
+    fi
+    if [[ -f "$gtk4_file" ]]; then
+        sed -i 's/gtk-theme-name=.*/gtk-theme-name='"$theme"'/' "$gtk4_file"
+        if grep -q 'gtk-application-prefer-dark-theme' "$gtk4_file"; then
+            sed -i 's/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme='"$dark"'/' "$gtk4_file"
         else
-            sed -i 's/gtk-theme-name=.*/gtk-theme-name=Adwaita-dark/' "$gtk_file"
-            sed -i 's/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=true/' "$gtk_file"
+            echo "gtk-application-prefer-dark-theme=$dark" >> "$gtk4_file"
         fi
     fi
 }
@@ -259,7 +270,10 @@ PYEOF
 # Brave theme notification
 notify_brave() {
     if pgrep -f brave &>/dev/null; then
-        notify-send -t 3000 "Theme" "Brave theme updated — restart Brave to apply" 2>/dev/null || true
+        printf "bg: #%s\ntext: #%s\naccent: #%s\n" \
+            "${colors[base00]}" "${colors[base05]}" "${colors[base0D]}" \
+            | wl-copy 2>/dev/null || true
+        notify-send -t 5000 "Theme" "Restart Brave — Dark Reader colors copied to clipboard" 2>/dev/null || true
     fi
 }
 
@@ -278,3 +292,8 @@ update_gtk
 apply_wallpaper
 notify_brave
 apply_spicetify
+
+# Patch Stylus import with current colors
+if [[ -f "$DOTFILES/theme/stylus-import.json" || -f "$HOME/Downloads/import.json" ]]; then
+    python3 "$DOTFILES/theme/patch-stylus.py" 2>/dev/null || true
+fi
