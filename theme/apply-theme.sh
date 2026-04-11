@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.spicetify:$PATH"
+
 SCHEME="${1:?Usage: apply-theme.sh <scheme-name>}"
 DOTFILES="$HOME/dotfiles"
 SCHEMES_DIR="$HOME/.local/share/tinted-theming/tinty/repos/schemes/base16"
