@@ -100,9 +100,9 @@ update_gtk() {
     local gtk_file="$DOTFILES/gtk/settings.ini"
     local gtk4_file="$HOME/.config/gtk-4.0/settings.ini"
     if (( luminance > 128 )); then
-        local theme="Adwaita" dark="false"
+        local theme="Adwaita" gtk_theme="Adwaita" dark="false"
     else
-        local theme="Adwaita-dark" dark="true"
+        local theme="Adwaita-dark" gtk_theme="Adwaita:dark" dark="true"
     fi
     if [[ -f "$gtk_file" ]]; then
         sed -i 's/gtk-theme-name=.*/gtk-theme-name='"$theme"'/' "$gtk_file"
@@ -116,6 +116,18 @@ update_gtk() {
             echo "gtk-application-prefer-dark-theme=$dark" >> "$gtk4_file"
         fi
     fi
+    # gsettings overrides settings.ini for portal-based apps
+    if command -v gsettings &>/dev/null; then
+        gsettings set org.gnome.desktop.interface gtk-theme "$theme" 2>/dev/null || true
+        if [[ "$dark" == "true" ]]; then
+            gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null || true
+        else
+            gsettings set org.gnome.desktop.interface color-scheme 'prefer-light' 2>/dev/null || true
+        fi
+    fi
+    # Update portal environment and restart so it picks up the theme
+    dbus-update-activation-environment --systemd GTK_THEME="$gtk_theme" 2>/dev/null || true
+    systemctl --user restart xdg-desktop-portal-gtk 2>/dev/null || true
 }
 
 # Wallpaper
@@ -136,7 +148,7 @@ apply_wallpaper() {
     fi
 
     if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
-        if command -v magick &>/dev/null; then
+        if python3 -c "from PIL import Image" 2>/dev/null; then
             wallpaper="$DOTFILES/theme/wallpaper.png"
             generate_palette_wallpaper "$wallpaper"
         else

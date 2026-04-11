@@ -6,7 +6,7 @@ set $menu rofi -show drun -show-icons
 include ~/dotfiles/sway/colors
 
 # Export environment to systemd/D-Bus for xdg-desktop-portal
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP=sway
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP=sway GTK_THEME=Adwaita:dark
 
 # Font
 font pango:GeistMono Nerd Font 10
