@@ -39,7 +39,10 @@ build_cache() {
         for c in "${colors[@]}"; do
             swatches+="<span background='#${c}'>    </span>"
         done
-        echo "${slug} ${icon}  ${name}   ${swatches}"
+        # Pad name to fixed width so swatches align right
+        local padded
+        padded=$(printf "%-30s" "$name")
+        echo "${slug} ${icon}  ${padded} ${swatches}"
     done | sort -t' ' -k3 > "$cache_file"
     cat "$cache_file"
 }
