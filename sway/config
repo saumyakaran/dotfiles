@@ -133,6 +133,7 @@ bindsym Ctrl+Shift+space exec 1password --quick-access
 bindsym $mod+Escape exec "ssh-add -D; swaylock"
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen
+for_window [app_id="xdg-desktop-portal-gtk"] floating enable, resize set 900 600, move position center
 # Caffeine toggle: $mod+c to inhibit/resume idle
 for_window [title="^caffeine-inhibitor$"] floating enable, resize set 1 1, move scratchpad, inhibit_idle open
 bindsym $mod+c exec ~/dotfiles/sway/caffeine.sh
