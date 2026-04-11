@@ -66,6 +66,7 @@ render "$DOTFILES/theme/templates/swaylock.mustache"              "$DOTFILES/swa
 render "$DOTFILES/theme/templates/rofi-colors.mustache"           "$DOTFILES/rofi/colors.rasi"
 render "$DOTFILES/theme/templates/rofi-powermenu-colors.mustache" "$DOTFILES/rofi/powermenu-colors.rasi"
 render "$DOTFILES/theme/templates/theme-vars.mustache"            "$DOTFILES/theme/vars.sh"
+render "$DOTFILES/theme/templates/gtk-colors.mustache"            "$HOME/.config/gtk-3.0/colors.css"
 mkdir -p "$DOTFILES/theme/brave-theme"
 render "$DOTFILES/theme/templates/brave-theme.mustache"          "$DOTFILES/theme/brave-theme/manifest.json"
 
