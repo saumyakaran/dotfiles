@@ -21,8 +21,6 @@ local function clang_bin()
   return as_string(vim.fn.exepath("clang++")) or "clang++"
 end
 
--- Toggle Catppuccin light/dark (latte/Macchiato)
-vim.keymap.set("n", "<leader>ut", "<cmd>CatppuccinToggle<cr>", { desc = "Toggle light/dark theme" })
 
 -- C++: quick compile/run, dev compile (clang++ + ASan), or build (make). Always clang++ + C++20.
 vim.keymap.set("n", "<leader>cc", function()
