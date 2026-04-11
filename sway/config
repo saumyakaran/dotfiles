@@ -124,6 +124,7 @@ bindsym $mod+Shift+b exec brave-browser --password-store=basic --load-extension=
 bindsym $mod+Shift+w exec flatpak run com.stremio.Stremio
 bindsym $mod+Shift+y exec brave-browser --password-store=basic --load-extension=$HOME/dotfiles/theme/brave-theme --new-window https://youtube.com
 bindsym $mod+Shift+a exec brave-browser --password-store=basic --load-extension=$HOME/dotfiles/theme/brave-theme --new-window https://claude.ai
+bindsym $mod+backslash exec 1password --quick-access
 
 # Screen lock
 bindsym $mod+Escape exec "ssh-add -D; swaylock"
