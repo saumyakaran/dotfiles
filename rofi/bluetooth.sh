@@ -54,6 +54,8 @@ build_menu() {
 
 # Initial call — no selection yet
 if [ "$ROFI_RETV" = "0" ] || [ -z "$ROFI_RETV" ]; then
+    # Start background scan so new devices appear on refresh
+    bluetoothctl --timeout 3 scan on >/dev/null 2>&1 &
     build_menu
     exit 0
 fi
