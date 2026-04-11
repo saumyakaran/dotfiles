@@ -125,7 +125,7 @@ apply_wallpaper() {
 
     if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
         if command -v magick &>/dev/null; then
-            wallpaper="/tmp/theme-wallpaper.png"
+            wallpaper="$DOTFILES/theme/wallpaper.png"
             generate_palette_wallpaper "$wallpaper"
         else
             return 0
@@ -138,6 +138,39 @@ apply_wallpaper() {
     if pgrep -x sway &>/dev/null; then
         swaymsg "output * bg $wallpaper fill" 2>/dev/null || true
     fi
+
+    # Generate lockscreen (solid base01 with scheme name centered)
+    generate_lockscreen
+}
+
+generate_lockscreen() {
+    command -v python3 &>/dev/null || return 0
+    local width height
+    read -r width height < <(swaymsg -t get_outputs 2>/dev/null | python3 -c "import sys,json; o=json.load(sys.stdin)[0]; m=o['current_mode']; print(m['width'], m['height'])" 2>/dev/null || echo "1920 1080")
+    python3 - "$DOTFILES/theme/lockscreen.png" "$width" "$height" \
+        "${colors[base01]}" "${colors[base03]}" "$SCHEME" <<'PYEOF'
+import sys
+from PIL import Image, ImageDraw, ImageFont
+
+output, w, h = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
+bg = f"#{sys.argv[4]}"
+fg = f"#{sys.argv[5]}"
+scheme = sys.argv[6].replace("base16-", "").replace("-", " ").title()
+
+img = Image.new("RGB", (w, h), bg)
+draw = ImageDraw.Draw(img)
+
+try:
+    font = ImageFont.truetype("/home/void/.local/share/fonts/GeistMonoNerdFontPropo-Regular.otf", h // 30)
+except:
+    font = ImageFont.load_default()
+
+bbox = draw.textbbox((0, 0), scheme, font=font)
+tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+draw.text(((w - tw) // 2, h * 2 // 3), scheme, fill=fg, font=font)
+
+img.save(output)
+PYEOF
 }
 
 generate_palette_wallpaper() {

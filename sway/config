@@ -169,6 +169,7 @@ for_window [app_id="floating-popup"] floating enable, resize set 1400 900, move 
 bindsym $mod+t exec ~/dotfiles/theme/carousel.sh
 
 # Autostart
+exec ~/dotfiles/theme/apply-theme.sh $(cat ~/dotfiles/theme/current)
 exec autotiling
 exec mako
 bar {
