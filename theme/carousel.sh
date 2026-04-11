@@ -32,8 +32,9 @@ build_cache() {
         [[ -z "$name" ]] && name="$slug"
         # Build pango: 8 colored squares (accent colors) + name
         local swatches=""
+        local block=$'\u2588'
         for c in "${colors[@]}"; do
-            swatches+="<span foreground='#${c}'>\u2588</span>"
+            swatches+="<span foreground='#${c}'>${block}</span>"
         done
         echo "${slug} ${swatches}  ${name}"
     done | sort -t' ' -k3 > "$cache_file"

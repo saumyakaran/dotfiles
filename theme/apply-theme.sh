@@ -158,14 +158,18 @@ img = Image.new("RGB", (w, h), bg)
 draw = ImageDraw.Draw(img)
 
 r = int(h / 22)  # ~20% smaller than h//18
+skirt_h = r // 3  # ghost skirt extends below
 gap = int(r * 1.2)
 ng = len(ghost_colors)
-total_w = r * 2 + ng * r * 2 + (ng) * gap  # pac + ghosts + gaps between all
+total_w = r * 2 + ng * r * 2 + (ng) * gap
 cx_start = (w - total_w) // 2 + r
-cy = h // 2
+cy = h // 2 - skirt_h // 2  # shift up to account for skirt
 
 def draw_pacman(cx, cy, r, color, bg):
     draw.pieslice((cx - r, cy - r, cx + r, cy + r), start=35, end=325, fill=color)
+    # Dot in mouth
+    dot_r = r // 6
+    draw.ellipse((cx + r + dot_r * 2, cy - dot_r, cx + r + dot_r * 4, cy + dot_r), fill=color)
 
 def draw_ghost(cx, cy, r, color, bg):
     draw.pieslice((cx - r, cy - r, cx + r, cy + r), start=180, end=360, fill=color)
