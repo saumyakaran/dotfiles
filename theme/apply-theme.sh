@@ -138,10 +138,7 @@ apply_wallpaper() {
 generate_palette_wallpaper() {
     local output="$1"
     local width height
-    width=$(swaymsg -t get_outputs 2>/dev/null | grep -oP '"current_mode":\s*\{[^}]*"width":\s*\K[0-9]+' | head -1)
-    width=${width:-1920}
-    height=$(swaymsg -t get_outputs 2>/dev/null | grep -oP '"current_mode":\s*\{[^}]*"height":\s*\K[0-9]+' | head -1)
-    height=${height:-1080}
+    read -r width height < <(swaymsg -t get_outputs 2>/dev/null | python3 -c "import sys,json; o=json.load(sys.stdin)[0]; m=o['current_mode']; print(m['width'], m['height'])" 2>/dev/null || echo "1920 1080")
 
     local bg="#${colors[base00]}"
     local swatch_size=$(( height / 12 ))
