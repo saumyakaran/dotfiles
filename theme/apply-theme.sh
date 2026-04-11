@@ -148,26 +148,38 @@ generate_lockscreen() {
     local width height
     read -r width height < <(swaymsg -t get_outputs 2>/dev/null | python3 -c "import sys,json; o=json.load(sys.stdin)[0]; m=o['current_mode']; print(m['width'], m['height'])" 2>/dev/null || echo "1920 1080")
     python3 - "$DOTFILES/theme/lockscreen.png" "$width" "$height" \
-        "${colors[base01]}" "${colors[base03]}" "$SCHEME" <<'PYEOF'
+        "${colors[base01]}" "${colors[base03]}" "${colors[base0D]}" "$SCHEME" <<'PYEOF'
 import sys
 from PIL import Image, ImageDraw, ImageFont
 
 output, w, h = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
 bg = f"#{sys.argv[4]}"
 fg = f"#{sys.argv[5]}"
-scheme = sys.argv[6].replace("base16-", "").replace("-", " ").title()
+accent = f"#{sys.argv[6]}"
+scheme = sys.argv[7].replace("base16-", "").replace("-", " ").title()
 
 img = Image.new("RGB", (w, h), bg)
 draw = ImageDraw.Draw(img)
 
-try:
-    font = ImageFont.truetype("/home/void/.local/share/fonts/GeistMonoNerdFontPropo-Regular.otf", h // 30)
-except:
-    font = ImageFont.load_default()
+font_path = "/home/void/.local/share/fonts/GeistMonoNerdFontPropo-Regular.otf"
 
-bbox = draw.textbbox((0, 0), scheme, font=font)
+try:
+    icon_font = ImageFont.truetype(font_path, h // 8)
+    label_font = ImageFont.truetype(font_path, h // 40)
+except:
+    icon_font = ImageFont.load_default()
+    label_font = icon_font
+
+# Lock icon centered
+lock = "\uf023"  # nerd font lock icon
+bbox = draw.textbbox((0, 0), lock, font=icon_font)
+lw, lh = bbox[2] - bbox[0], bbox[3] - bbox[1]
+draw.text(((w - lw) // 2, (h - lh) // 2 - h // 20), lock, fill=accent, font=icon_font)
+
+# Theme name below the icon
+bbox = draw.textbbox((0, 0), scheme, font=label_font)
 tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-draw.text(((w - tw) // 2, h * 2 // 3), scheme, fill=fg, font=font)
+draw.text(((w - tw) // 2, (h + lh) // 2 + h // 15), scheme, fill=fg, font=label_font)
 
 img.save(output)
 PYEOF
