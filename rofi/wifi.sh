@@ -58,21 +58,28 @@ while true; do
     if nmcli -t -f NAME con show | grep -qx "$ssid"; then
         nmcli con up "$ssid" && $notify "WiFi" "Connected to $ssid" || $notify "WiFi" "Failed to connect to $ssid"
         exit 0
-    else
-        sig_icon=$(signal_icon "$sig")
-        pass=$(echo -e "󰌾  Connect\n󰁍  Back" | rofi -dmenu -i -p "" -password \
-            -mesg "$sig_icon  <b>$ssid</b>" \
-            -theme-str "mainbox { children: [message, inputbar, listview]; }" \
-            -theme-str "message { margin: 0 0 8px 0; padding: 10px 12px; background-color: @bg-alt; border-radius: 4px; }" \
-            -theme-str "textbox { background-color: @bg-alt; text-color: @fg; }" \
-            -theme-str "entry { placeholder: \"Enter password\"; }" \
-            -theme-str "listview { lines: 2; }" \
-            -no-show-icons)
-        [ -z "$pass" ] && exit 0
-        [[ "$pass" == *"Back"* ]] && continue
-        [[ "$pass" == *"Connect"* ]] && { notify-send "WiFi" "No password entered"; continue; }
+    fi
 
-        nmcli dev wifi connect "$ssid" password "$pass" && $notify "WiFi" "Connected to $ssid" || $notify "WiFi" "Failed to connect to $ssid"
+    # Check if network is open (no security)
+    security=$(nmcli -t -f SSID,SECURITY dev wifi list --rescan no | grep "^${ssid}:" | head -1 | cut -d: -f2)
+    if [ -z "$security" ]; then
+        nmcli dev wifi connect "$ssid" && $notify "WiFi" "Connected to $ssid" || $notify "WiFi" "Failed to connect to $ssid"
         exit 0
     fi
+
+    sig_icon=$(signal_icon "$sig")
+    pass=$(echo -e "󰌾  Connect\n󰁍  Back" | rofi -dmenu -i -p "" -password \
+        -mesg "$sig_icon  <b>$ssid</b>" \
+        -theme-str "mainbox { children: [message, inputbar, listview]; }" \
+        -theme-str "message { margin: 0 0 8px 0; padding: 10px 12px; background-color: @bg-alt; border-radius: 4px; }" \
+        -theme-str "textbox { background-color: @bg-alt; text-color: @fg; }" \
+        -theme-str "entry { placeholder: \"Enter password\"; }" \
+        -theme-str "listview { lines: 2; }" \
+        -no-show-icons)
+    [ -z "$pass" ] && exit 0
+    [[ "$pass" == *"Back"* ]] && continue
+    [[ "$pass" == *"Connect"* ]] && { notify-send "WiFi" "No password entered"; continue; }
+
+    nmcli dev wifi connect "$ssid" password "$pass" && $notify "WiFi" "Connected to $ssid" || $notify "WiFi" "Failed to connect to $ssid"
+    exit 0
 done
