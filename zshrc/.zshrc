@@ -130,6 +130,19 @@ for p in "$HOME/.local/bin" "$HOME/.opencode/bin" "$HOME/.foundry/bin"; do
   [ -d "$p" ] && case ":$PATH:" in *":$p:"*) ;; *) PATH="$p:$PATH" ;; esac
 done
 
+### ── Nix profiles take precedence (must come after brew/user-local prepends) ─
+# Nix is the source of truth for packages on this machine. The prepends above
+# push /usr/local/bin and /opt/homebrew/bin to the front of PATH; without this
+# block, a stale global install (e.g. /usr/local/bin/pnpm from a 2024 Node.js
+# installer) would shadow the nix-managed version. Re-prepend nix profile bins
+# so home-manager/nix-darwin packages always win.
+for p in "/run/current-system/sw/bin" "/etc/profiles/per-user/$USER/bin" "$HOME/.nix-profile/bin"; do
+  if [ -d "$p" ]; then
+    PATH=":$PATH:"; PATH="${PATH//:$p:/:}"; PATH="${PATH#:}"; PATH="${PATH%:}"
+    PATH="$p:$PATH"
+  fi
+done
+
 ### ── Optional host-local overrides (kept out of git) ────────────────────────
 [ -r "$HOME/.zsh.local" ] && source "$HOME/.zsh.local"
 
