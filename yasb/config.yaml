@@ -11,13 +11,11 @@ bars:
     class_name: "yasb-bar"
     alignment:
       position: "top"
-      center: false
     animation:
       enabled: true
       duration: 300
     blur_effect:
       enabled: false
-      acrylic: false
       dark_mode: true
       round_corners: true
       round_corners_type: "normal"
@@ -67,12 +65,10 @@ widgets:
       empty_label: "{name}"
       active_populated_label: "{name}"
       active_empty_label: "{name}"
-      hide_empty_workspaces: false
       glazewm_server_uri: "ws://localhost:6123"
       enable_scroll_switching: true
       reverse_scroll_direction: true
       monitor_exclusive: true
-      animation: true
       app_icons:
         enabled_populated: false
         enabled_active: false
@@ -117,12 +113,12 @@ widgets:
       label: "<span>{icon}</span> {level}"
       label_alt: "{volume}"
       tooltip: false
-      volume_icons:
-        - "\ueee8"
-        - "\uf026"
-        - "\uf027"
-        - "\uf027"
-        - "\uf028"
+      icons:
+        muted: "\ueee8"
+        "10": "\uf026"
+        "30": "\uf027"
+        "60": "\uf027"
+        "100": "\uf028"
       callbacks:
         on_left: "toggle_volume_menu"
         on_middle: "do_nothing"
@@ -132,7 +128,6 @@ widgets:
         round_corners: true
         alignment: "right"
         direction: "down"
-        distance: 6
         offset_top: 6
         offset_left: 0
         show_apps: true
@@ -219,7 +214,7 @@ widgets:
         border_color: "System"
         alignment: "right"
         direction: "down"
-        distance: 6
+        offset_top: 6
       callbacks:
         on_left: "toggle_group"
         on_middle: "toggle_label"
