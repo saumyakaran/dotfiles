@@ -26,7 +26,7 @@
   --base: #24273a;
   --mantle: #1e2030;
   --crust: #181926;
-  --pill: rgba(73, 77, 100, 0.45);
+  --pill: transparent;
   --popup: rgba(30, 32, 48, 0.95);
 }
 
