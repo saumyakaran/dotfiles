@@ -56,6 +56,7 @@ bindsym $mod+space exec $menu
 floating_modifier $mod normal
 bindsym $mod+Shift+r reload
 bindsym $mod+Shift+e exec ~/dotfiles/rofi/powermenu.sh
+bindsym $mod+Shift+slash exec ~/dotfiles/sway/keybindings.sh
 
 # Navigation
 bindsym $mod+h focus left
